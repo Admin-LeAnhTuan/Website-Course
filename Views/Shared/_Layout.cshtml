@@ -6,39 +6,320 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/Content/fontawesome-free-6.3.0-web/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="header d-flex justify-content-between">
+        <div class="header__logo d-flex gap-3 align-items-center">
+            <a href="./">
+                <img class="border-s"
+                     style="height: 38px; width: 38px"
+                     src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png" />
+            </a>
+
+            <h6>Learn English for future</h6>
+        </div>
+
+        <div class="header__search">
+            <label for="key_word">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </label>
+            <input type="text"
+                   name="key_word"
+                   id="key_word"
+                   placeholder="Tìm kiếm khóa học, bài viết, video, ..." />
+        </div>
+
+        <div class="header__nav d-flex align-items-center gap-4">
+            <span>Khóa học của tôi</span>
+
+            <div class="header__notification" style="cursor: pointer">
+                <span id="notification-event">
+                    <i class="fz-icon fa-solid fa-bell"></i>
+                </span>
+
+                <div class="notification__popup popup shadow-lg border-m index-top">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="text-default fw-500 fz-18 p-3">Thông báo</h3>
+
+                        <h4 class="text-primary fz-14 p-3">Đánh dấu đã đọc</h4>
+                    </div>
+
+                    <ul class="d-flex flex-column gap-1">
+                        px-2 style="width: 20%;"
+                        <li class="d-flex gap-2 notification__card notification__card--new">
+                            <img src="https://fullstack.edu.vn/assets/images/f8_avatar.png"
+                                 alt=""
+                                 style="height: 42px; width: 42px"
+                                 class="notification__logo border-circle" />
+                            <div class="d-flex flex-column">
+                                <h6 class="fz-14">
+                                    Bài học CSS selectors cơ bản #1 mới được thêm vào.
+                                </h6>
+                                <h5 class="fz-14 fw-500 text-primary">2 tháng trước</h5>
+                            </div>
+                        </li>
+
+                        <li class="d-flex gap-2 notification__card notification__card--new">
+                            <img src="https://fullstack.edu.vn/assets/images/f8_avatar.png"
+                                 alt=""
+                                 style="height: 42px; width: 42px"
+                                 class="notification__logo border-circle" />
+                            <div class="d-flex flex-column">
+                                <h6 class="fz-14">
+                                    Bài học CSS selectors cơ bản #1 mới được thêm vào.
+                                </h6>
+                                <h5 class="fz-14 fw-500 text-primary">2 tháng trước</h5>
+                            </div>
+                        </li>
+
+                        <li class="d-flex gap-2 notification__card notification__card--new">
+                            <img src="https://fullstack.edu.vn/assets/images/f8_avatar.png"
+                                 alt=""
+                                 style="height: 42px; width: 42px"
+                                 class="notification__logo border-circle" />
+                            <div class="d-flex flex-column">
+                                <h6 class="fz-14">
+                                    Bài học CSS selectors cơ bản #1 mới được thêm vào.
+                                </h6>
+                                <h5 class="fz-14 fw-500 text-primary">2 tháng trước</h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+
+            <div class="header__user position-relative">
+                <span>
+                    <img class="border-circle"
+                         id="user-event"
+                         style="width: 28px; height: 28px"
+                         src="https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg"
+                         alt="avt user" />
+                </span>
+
+                <div class="user__popup popup shadow-lg border-m">
+                    <div class="user__info d-flex gap-3 align-items-center border-bottom-grey pb-3">
+                        <a href="./">
+                            <img class="border-circle"
+                                 style="width: 50px; height: 50px"
+                                 src="https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg"
+                                 alt="avt user" />
+                        </a>
+                        <h5 class="fw-500 fz-18 text-default">Lỗi Tạ</h5>
+                    </div>
+                    <div class="py-2-5 border-bottom-grey">
+                        <a href="">Trang cá nhân</a>
+                    </div>
+                    <div class="py-2-5">
+                        <a href="">Viết blog</a>
+                    </div>
+                    <div class="pb-2-5 border-bottom-grey">
+                        <a href="">Bài viết của tôi</a>
+                    </div>
+
+                    <div class="py-2-5 border-bottom-grey">
+                        <a href="">Bài viết đã lưu</a>
+                    </div>
+                    <div class="py-2-5">
+                        <a href="">Cài đặt</a>
+                    </div>
+                    <div>
+                        <a href="">Đăng xuất</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+
+    <div class=" body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+
+        <footer class="footer">
+            <div class="footer__info container d-flex gap-4 justify-content-center">
+                <div class="d-flex flex-column gap-3 flex-1 px-2" style="width: 20%">
+                    <div class="d-flex align-items-center gap-2">
+                        <img class="border-s"
+                             style="height: 38px; width: 38px"
+                             src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png" />
+
+                        <h4 class="fw-500 fz-16 text-white">Learn English for future</h4>
+                    </div>
+
+                    <ul class="d-flex flex-column gap-1 flex-1 px-2">
+                        <li class="text-grey">
+                            <p class="">
+                                Điện thoại: <a href="tel:0246.329.1102">0246.329.1102</a><br />Email:
+                                <a href="mailto:contact@fullstack.edu.vn">contact@fullstack.edu.vn</a><br />Địa chỉ: Số 26 Dương Đình Nghệ, Phường Yên Hòa, Quận Cầu
+                                Giấy, TP. Hà Nội
+                            </p>
+                        </li>
+                    </ul>
+
+                    <img class=""
+                         style="max-height: 21px; width: fit-content"
+                         src="https://fullstack.edu.vn/static/media/dmca.2593d9ecf1c982e3c3a2.png"
+                         alt="DMCA" />
+                </div>
+
+                <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
+                     style="width: 20%">
+                    <div class="d-flex justify-content-center flex-column"
+                         style="width: fit-content">
+                        <h4 class="fz-16 fw-500 text-white capitalize">Về F8</h4>
+                        <ul>
+                            <li>
+                                <a href="" class="text-grey fz-14">Giới thiệu</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Liên hệ</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Điều khoản</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Bảo mật</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Cơ hội việc làm</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
+                     style="width: 20%">
+                    <div class="d-flex justify-content-center flex-column"
+                         style="width: fit-content">
+                        <h4 class="fz-16 fw-500 text-white capitalize">Sản phẩm</h4>
+                        <ul>
+                            <li>
+                                <a href="" class="text-grey fz-14">Game Nester</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Game CSS Diner</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Game CSS Selectors</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Game Froggy</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Game Froggy Pro</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Game Scoops</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
+                     style="width: 20%">
+                    <div class="d-flex justify-content-center flex-column"
+                         style="width: fit-content">
+                        <h4 class="fz-16 fw-500 text-white capitalize">Công cụ</h4>
+                        <ul>
+                            <li>
+                                <a href="" class="text-grey fz-14">Tạo CV xin việc</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Rút gọn liên kết</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Clip-path maker</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Snippet generator</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Cảnh báo sờ tay lên mặt</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
+                     style="width: 20%">
+                    <div class="d-flex justify-content-center flex-column"
+                         style="width: fit-content">
+                        <h4 class="fz-16 fw-500 text-white capitalize">
+                            CÔNG TY CỔ PHẦN CÔNG NGHỆ GIÁO DỤC F8
+                        </h4>
+                        <ul>
+                            <li>
+                                <a href="" class="text-grey fz-14">Mã số thuế: 0109922901</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">Ngày thành lập: 04/03/2022</a>
+                            </li>
+                            <li>
+                                <a href="" class="text-grey fz-14">
+                                    Lĩnh vực: Công nghệ, giáo dục, lập trình. F8 xây dựng và phát
+                                    triển những sản phẩm mang lại giá trị cho cộng đồng.
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div  class="d-flex justify-content-between container mt-5 align-items-center">
+                <p class="fz-14 text-grey">
+                    © 2018 - 2023 F8. Nền tảng học lập trình hàng đầu Việt Nam
+                </p>
+
+                <div class="d-flex gap-3">
+                    <ul class="m-0 d-flex gap-3 align-items-center">
+                        <li>
+                            <a href="https://www.youtube.com/">
+                                <i style="
+                    font-size: 20px;
+                    background-color: #eb2c3b;
+                  "
+                                   class="fa-brands p-1 fa-youtube"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.facebook.com/">
+                                <i style="
+                    font-size: 20px;
+                    background-color: #4867aa;
+                  "
+                                   class="fa-brands p-1 fa-facebook-f"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://www.tiktok.com/en/">
+                                <i style="
+                    font-size: 28px;
+                    color: #ccc;
+                  "
+                                   class="fa-brands p-1 fa-tiktok p"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <script src="~/Content/fontawesome-free-6.3.0-web/js/all.min.js"></script>
+    <script src="~/Content/js/header.js"></script>
 </body>
 </html>
