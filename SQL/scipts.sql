@@ -17,7 +17,9 @@ CREATE TABLE Category
 (
 	category_id int primary key,
 	Name nvarchar(255)
+
 )
+GO
 
 CREATE TABLE Course
 (
@@ -26,32 +28,24 @@ CREATE TABLE Course
 	description text,
 	price nvarchar(255),
 	duration nvarchar(255),
-	userid nvarchar(128)
-
+	userid nvarchar(128),
+	category_id int
+	foreign key (userid) references AspNetUsers(Id),
+	foreign key (category_id) references Category(category_id),
 )
-
-CREATE TABLE Teacher
-(
-	teacher_id nvarchar(128)primary key,
-	userid nvarchar(128)
-
-)
-
-
-CREATE TABLE Student
-(
-	student_id nvarchar(128) primary key,
-	enrollment_date datetime,
-)
+Go
 
 CREATE TABLE Enrollment
 (
 	enrollment_id int primary key, 
 	 course_id int,
-	 student_id nvarchar(128),
+	 users_id nvarchar(128),
 	 enrollment_date datetime,
 	 statuss int
+	foreign key (users_id) references AspNetUsers(Id)
+
 )
+GO
 
 CREATE TABLE Payment
 (
@@ -59,13 +53,18 @@ CREATE TABLE Payment
 	enrollment_id int,
 	payment_date datetime,
 	amount float
+	foreign key (enrollment_id) references Enrollment(enrollment_id)
+
 )
+GO
 
 CREATE TABLE Review
 (
 	review_id int primary key,
 	course_id int,
+	users_id nvarchar(128),
 	rating float,
 	comment text,
 	review_date datetime
+	foreign key (users_id) references AspNetUsers(Id)
 )
