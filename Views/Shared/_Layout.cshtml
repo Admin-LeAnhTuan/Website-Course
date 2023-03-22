@@ -136,12 +136,50 @@
             </div>
         </div>
     </div>
+    <div class="categories">
+        <ul class="categories__list d-flex flex-column gap-3 align-items-center">
+            <li class="categories__item">
+                <div class="categories__item--add">
+                    <a href=""><i class="fa-solid fa-plus"></i></a>
+                </div>
+            </li>
+            <li class="categories__item">
+                <a href="#" style="" class="categories__item--active gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                    <i class="fa-solid fa-house"></i>
+                    <h6 class="text-default">Home</h6>
+                </a>
+            </li>
+            <li class="categories__item">
+                <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                    <i class="fa-solid fa-road"></i>
+                    <h6 class="text-default">Lộ trình</h6>
+                </a>
 
-    <div class="">
+            </li>
+            <li class="categories__item">
+                <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <h6 class="text-default">Học</h6>
+                </a>
+
+            </li>
+
+            <li class="categories__item">
+                <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                    <i class="fa-solid fa-newspaper"></i>
+                    <h6 class="text-default">Blog</h6>
+                </a>
+
+            </li>
+        </ul>
+    </div>
+    <div class="container">
         @RenderBody()   
         <hr />
 
-        <footer class="footer">
+        
+    </div>
+    <footer class="footer">
             <div class="footer__info container d-flex gap-4 justify-content-center">
                 <div class="d-flex flex-column gap-3 flex-1 px-2" style="width: 20%">
                     <div class="d-flex align-items-center gap-2">
@@ -311,8 +349,6 @@
                 </div>
             </div>
         </footer>
-    </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

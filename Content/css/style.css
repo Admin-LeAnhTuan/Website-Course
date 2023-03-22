@@ -38,6 +38,12 @@ p {
 a {
     text-decoration: none;
     color: inherit;
+    
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
 }
 
 ol,
@@ -255,3 +261,50 @@ ul {
     content: "";
     display: none;
 }
+
+.categories__item--add {
+    width: 44px;
+    height: 44px;
+    background-color: #1473e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all .5s;
+    transform-origin: center;
+}
+
+.categories {
+    position: fixed;
+    top: 82px;
+    left: 12px;
+}
+
+.categories__item--add a {
+    color: #fff;
+}
+
+    .categories__item--add a svg {
+        transition: all .5s;
+    }
+    .categories__item--add:hover a svg {
+        font-size: 24px;
+    }
+
+.categories__item--active {
+    width: 72px;
+    height: 72px;
+    background-color: #e8ebed;
+}
+
+.categories__item--link {
+    width: 72px;
+    height: 72px;
+    transition: all .25s;
+}
+
+
+.categories__item--link:hover {
+    background-color: rgba(232,235,237,.5)
+}
+
