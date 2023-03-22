@@ -21,7 +21,8 @@ namespace Course.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Course> Courses { get; set; }
+        public DbSet<Courses> Courses { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -32,6 +33,6 @@ namespace Course.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Course.Models.Category> Categories { get; set; }
+        
     }
 }

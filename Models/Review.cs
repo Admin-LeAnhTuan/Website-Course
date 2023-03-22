@@ -24,5 +24,7 @@ namespace Course.Models
         public string comment { get; set; }
 
         public DateTime? review_date { get; set; }
+
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace Course.Models
     using System.Data.Entity.Spatial;
 
     [Table("Course")]
-    public partial class Course
+    public partial class Courses
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -29,6 +29,8 @@ namespace Course.Models
         public string userid { get; set; }
 
         public int? category_id { get; set; }
+
+        public virtual AspNetUser AspNetUser { get; set; }
 
         public virtual Category Category { get; set; }
     }
