@@ -38,13 +38,12 @@ p {
 a {
     text-decoration: none;
     color: inherit;
-    
 }
 
-a:hover {
-    text-decoration: none;
-    color: inherit;
-}
+    a:hover {
+        text-decoration: none;
+        color: inherit;
+    }
 
 ol,
 ul {
@@ -253,11 +252,11 @@ ul {
 }
 
 .container::before {
-    content:"";
+    content: "";
     display: none;
 }
 
-.container::after{
+.container::after {
     content: "";
     display: none;
 }
@@ -287,9 +286,10 @@ ul {
     .categories__item--add a svg {
         transition: all .5s;
     }
-    .categories__item--add:hover a svg {
-        font-size: 24px;
-    }
+
+.categories__item--add:hover a svg {
+    font-size: 24px;
+}
 
 .categories__item--active {
     width: 72px;
@@ -304,7 +304,174 @@ ul {
 }
 
 
-.categories__item--link:hover {
-    background-color: rgba(232,235,237,.5)
+    .categories__item--link:hover {
+        background-color: rgba(232,235,237,.5)
+    }
+
+    
+.hero {
+  max-width: calc(100vw * 1764 / 1920);
+  margin: 18px auto;
 }
 
+.hero__container {
+  height: 270px;
+  background: linear-gradient(to right, rgb(254, 33, 94), rgb(255, 148, 2));
+  border-radius: 28px;
+}
+
+.fz-32 {
+  font-size: 32px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 50px;
+  width: fit-content;
+}
+
+.btn--white {
+  color: #fff;
+  border: #fff solid 2px;
+}
+
+.swiper-slide-active {
+  background: linear-gradient(to right, rgb(254, 33, 94), rgb(255, 148, 2));
+  height: 270px;
+  border-radius: 28px;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 28px;
+  height: 28px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.content {
+  max-width: calc(100vw * 1676 / 1920);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fw-900 {
+  font-weight: 900;
+}
+
+.fz-24 {
+  font-size: 24px;
+}
+
+.course {
+  width: calc(25% - 24px);
+  height: 224px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 24px;
+  position: relative;
+}
+
+.course:hover .course__overlay {
+  opacity: 1;
+}
+
+.course .course__overlay a {
+  transform: translateY(20px);
+  transition: all 0.5s;
+}
+
+.course:hover .course__overlay a {
+  transform: translateY(0);
+}
+.course__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 24px;
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.border--lg {
+  border-radius: 50px;
+}
+
+.border--sm {
+  border-radius: 12px;
+}
+
+
+.login {
+    height: 100vh;
+    background-image: url("https://accounts.fullstack.edu.vn/static/media/f8_bg_auth_1920.b517075e98f3051de678.png");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1031;
+}
+
+.login__popup {
+  width: 640px;
+  height: 600px;
+  background-color: #fff;
+  border-radius: 20px;
+  z-index: 100;
+  padding: 48px 16px;
+}
+
+.login__overlay {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.login__form {
+  margin: 0 auto;
+  width: 380px;
+}
+
+.login__input {
+  background-color: rgba(22,24,35,.06);
+  padding: 12px 20px;
+  border-radius: 50px;
+  color: #a3a3a3;
+  font-size: 14px;
+}
+
+.login__input::placeholder {
+  color: #a3a3a3;
+}
+
+.btn--login {
+  background-color: #1dbfaf;
+  background-image:linear-gradient(70.06deg, #2cccff -5%, #22dfbf 106%);
+  opacity: .5;
+}

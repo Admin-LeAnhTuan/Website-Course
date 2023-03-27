@@ -1,41 +1,42 @@
-﻿@model Course.Models.RegisterViewModel
+﻿@using Course.Models
+@model RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "LoginNew";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div class="w-100 login">
+    <div class="login__popup">
+        <div class="login__title text-center">
+            <img class="border--sm"
+                 src="https://accounts.fullstack.edu.vn/assets/icon/f8_icon.png"
+                 alt=""
+                 width="44px"
+                 height="44px" />
+            <h1 class="fz-28 fw-700 mt-3">Đăng ký tài khoản F8</h1>
+        </div>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            <label for="username" class="fw-500"> Đăng nhập</label>
+            @Html.TextBoxFor(m => m.Email, new { @class = "w-100 mt-1 login__input", placeholder = "Nhập Email" })
+            @Html.PasswordFor(m => m.Password, new { @class = "w-100 mt-1 login__input", placeholder = "Nhập Mật khẩu" })
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "w-100 mt-1 login__input", placeholder = "Nhập lại Mật khẩu" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+            <button type="submit" class="btn btn--login w-100 text-white mt-3">
+                Đăng ký
+            </button>
+        }
+        <div class="mt-5 text-center">
+            <span class="">
+                Bạn chưa có tài khoản?
+                <a class="text-primary fw-500" href="">Đăng ký</a>
+            </span>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <div class="login__overlay"></div>
+</div>
