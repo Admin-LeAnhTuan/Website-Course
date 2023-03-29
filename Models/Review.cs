@@ -10,7 +10,7 @@ namespace Course.Models
     public partial class Review
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int review_id { get; set; }
 
         public int? course_id { get; set; }
