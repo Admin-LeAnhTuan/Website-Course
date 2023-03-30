@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Course.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Course.Controllers
 {
@@ -49,11 +50,13 @@ namespace Course.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "title,description,price,duration")] Courses courses)
+        public ActionResult Create([Bind(Include = "title,description,price,duration,category_id")] Courses courses)
         {
             if (ModelState.IsValid)
             {
+                courses.userid = User.Identity.GetUserId();
                 db.Courses.Add(courses);
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

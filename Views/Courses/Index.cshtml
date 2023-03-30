@@ -4,62 +4,120 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="hero swiper">
+    <div class="swiper-wrapper hero__container">
+        <div class="w-100 d-flex justify-content-between swiper-slide">
+            <div class="d-flex flex-column gap-3 flex-1 justify-content-between"
+                 style="padding: 48px 40px">
+                <h3 class="text-white fz-32 fw-500">F8 trên Facebook</h3>
 
-<h2>Index</h2>
+                <h5 class="fz-16 text-white">
+                    F8 được nhắc tới ở mọi nơi, ở đâu có cơ hội việc làm cho nghề IT
+                    và có những con người yêu thích lập trình F8 sẽ ở đó.
+                </h5>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.duration)
-        </th>
-        <th></th>
-    </tr>
+                <button class="btn btn--white">Truy cập Facebook</button>
+            </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.duration)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.course_id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.course_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.course_id }) |
-            @Html.ActionLink("Add Unit", "Unit", new { id = item.course_id })
-        </td>
-    </tr>
-}
+            <div class="hero__img flex-1">
+                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png"
+                     alt="" />
+            </div>
+        </div>
 
-</table>
+        <div style="
+            background: linear-gradient(
+              to right,
+              rgb(0, 126, 254),
+              rgb(6, 195, 254)
+            );
+          "
+             class="hero__container w-100 d-flex justify-content-between swiper-slide">
+            <div class="d-flex flex-column gap-3 flex-1 justify-content-between"
+                 style="padding: 48px 40px">
+                <h3 class="text-white fz-32 fw-500">F8 trên Facebook</h3>
+
+                <h5 class="fz-16 text-white">
+                    F8 được nhắc tới ở mọi nơi, ở đâu có cơ hội việc làm cho nghề IT
+                    và có những con người yêu thích lập trình F8 sẽ ở đó.
+                </h5>
+
+                <button class="btn btn--white">Truy cập Facebook</button>
+            </div>
+
+            <div class="hero__img flex-1">
+                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png"
+                     alt="" />
+            </div>
+        </div>
+
+        <div style="
+            background: linear-gradient(
+              to right,
+              rgb(104, 40, 250),
+              rgb(255, 186, 164)
+            );
+          "
+             class="hero__container w-100 d-flex justify-content-between swiper-slide">
+            <div class="d-flex flex-column gap-3 flex-1 justify-content-between"
+                 style="padding: 48px 40px">
+                <h3 class="text-white fz-32 fw-500">F8 trên Facebook</h3>
+
+                <h5 class="fz-16 text-white">
+                    F8 được nhắc tới ở mọi nơi, ở đâu có cơ hội việc làm cho nghề IT
+                    và có những con người yêu thích lập trình F8 sẽ ở đó.
+                </h5>
+
+                <button class="btn btn--white">Truy cập Facebook</button>
+            </div>
+
+            <div class="hero__img flex-1">
+                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png"
+                     alt="" />
+            </div>
+        </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
+
+<div class="content">
+    <h2 class="text-default fz-24 fw-900">Khóa học miễn phí</h2>
+
+    <div class="d-flex gap-3 flex-wrap mt-3">
+
+        @foreach (var item in Model)
+        {
+            <div class="course"
+                 style="
+            background-image: url(https://files.fullstack.edu.vn/f8-prod/courses/7.png);
+          ">
+                <div class="course__overlay">
+                    <a href="/Courses/Details/@Html.DisplayFor(modelItem => item.course_id)" class="px-3 py-2 bg-white text-default border--lg">Tiếp tục học</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<script>
+    var swiper = new Swiper(".swiper", {
+        loop: true,
+        spaceBetween: 30,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
