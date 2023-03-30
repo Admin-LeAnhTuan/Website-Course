@@ -16,7 +16,7 @@ namespace Course.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int category_id { get; set; }
 
         [StringLength(255)]

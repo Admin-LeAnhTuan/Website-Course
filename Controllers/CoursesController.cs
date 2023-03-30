@@ -49,7 +49,7 @@ namespace Course.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "course_id,title,description,price,duration,userid,category_id")] Courses courses)
+        public ActionResult Create([Bind(Include = "title,description,price,duration")] Courses courses)
         {
             if (ModelState.IsValid)
             {

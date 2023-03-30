@@ -10,7 +10,7 @@ namespace Course.Models
     public partial class Courses
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int course_id { get; set; }
 
         [StringLength(255)]
