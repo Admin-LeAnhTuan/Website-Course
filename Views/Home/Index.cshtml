@@ -1,31 +1,116 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<div class="hero swiper">
+    <div class="swiper-wrapper hero__container">
+        <div class="w-100 d-flex justify-content-between swiper-slide">
+            <div class="d-flex flex-column gap-3 flex-1 justify-content-between"
+                 style="padding: 48px 40px">
+                <h3 class="text-white fz-32 fw-500">F8 trên Facebook</h3>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+                <h5 class="fz-16 text-white">
+                    F8 được nhắc tới ở mọi nơi, ở đâu có cơ hội việc làm cho nghề IT
+                    và có những con người yêu thích lập trình F8 sẽ ở đó.
+                </h5>
+
+                <button class="btn btn--white">Truy cập Facebook</button>
+            </div>
+
+            <div class="hero__img flex-1">
+                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png"
+                     alt="" />
+            </div>
+        </div>
+
+        <div style="
+            background: linear-gradient(
+              to right,
+              rgb(0, 126, 254),
+              rgb(6, 195, 254)
+            );
+          "
+             class="hero__container w-100 d-flex justify-content-between swiper-slide">
+            <div class="d-flex flex-column gap-3 flex-1 justify-content-between"
+                 style="padding: 48px 40px">
+                <h3 class="text-white fz-32 fw-500">F8 trên Facebook</h3>
+
+                <h5 class="fz-16 text-white">
+                    F8 được nhắc tới ở mọi nơi, ở đâu có cơ hội việc làm cho nghề IT
+                    và có những con người yêu thích lập trình F8 sẽ ở đó.
+                </h5>
+
+                <button class="btn btn--white">Truy cập Facebook</button>
+            </div>
+
+            <div class="hero__img flex-1">
+                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png"
+                     alt="" />
+            </div>
+        </div>
+
+        <div style="
+            background: linear-gradient(
+              to right,
+              rgb(104, 40, 250),
+              rgb(255, 186, 164)
+            );
+          "
+             class="hero__container w-100 d-flex justify-content-between swiper-slide">
+            <div class="d-flex flex-column gap-3 flex-1 justify-content-between"
+                 style="padding: 48px 40px">
+                <h3 class="text-white fz-32 fw-500">F8 trên Facebook</h3>
+
+                <h5 class="fz-16 text-white">
+                    F8 được nhắc tới ở mọi nơi, ở đâu có cơ hội việc làm cho nghề IT
+                    và có những con người yêu thích lập trình F8 sẽ ở đó.
+                </h5>
+
+                <button class="btn btn--white">Truy cập Facebook</button>
+            </div>
+
+            <div class="hero__img flex-1">
+                <img src="https://files.fullstack.edu.vn/f8-prod/banners/Banner_01_2.png"
+                     alt="" />
+            </div>
+        </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+<div class="content">
+    <h2 class="text-default fz-24 fw-900">Khóa học miễn phí</h2>
+
+    <div class="d-flex gap-3 flex-wrap mt-3">
+        <div class="course"
+             style="
+            background-image: url(https://files.fullstack.edu.vn/f8-prod/courses/7.png);
+          ">
+            <div class="course__overlay">
+                <a href="" class="px-3 py-2 bg-white text-default border--lg">Tiếp tục học</a>
+            </div>
+        </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<script>
+      var swiper = new Swiper(".swiper", {
+        loop: true,
+        spaceBetween: 30,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+</script>
