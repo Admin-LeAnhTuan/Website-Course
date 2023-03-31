@@ -10,7 +10,6 @@ namespace Course.Models
     public partial class Review
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int review_id { get; set; }
 
         public int? course_id { get; set; }
@@ -26,5 +25,7 @@ namespace Course.Models
         public DateTime? review_date { get; set; }
 
         public virtual AspNetUser AspNetUser { get; set; }
+
+        public virtual Courses Course { get; set; }
     }
 }

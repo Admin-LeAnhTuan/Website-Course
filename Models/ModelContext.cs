@@ -12,7 +12,6 @@ namespace Course.Models
         {
         }
 
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -22,7 +21,8 @@ namespace Course.Models
         public virtual DbSet<Enrollment> Enrollments { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Test> Tests { get; set; }
+        public virtual DbSet<Unit> Units { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -57,12 +57,25 @@ namespace Course.Models
                 .HasForeignKey(e => e.users_id);
 
             modelBuilder.Entity<Courses>()
-                .Property(e => e.description)
+                .Property(e => e.img_course)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Review>()
                 .Property(e => e.comment)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Unit>()
+                .Property(e => e.url_unit)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Unit>()
+                .Property(e => e.duration)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Unit>()
+                .HasMany(e => e.Tests)
+                .WithOptional(e => e.Unit)
+                .HasForeignKey(e => e.Test_unit_id);
         }
     }
 }

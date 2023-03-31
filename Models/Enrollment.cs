@@ -16,7 +16,6 @@ namespace Course.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int enrollment_id { get; set; }
 
         public int? course_id { get; set; }

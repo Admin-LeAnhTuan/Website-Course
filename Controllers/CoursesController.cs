@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -51,6 +52,17 @@ namespace Course.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "title,description,price,duration")] Courses courses)
         {
+
+            if(courses.ImageUpload != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(courses.ImageUpload.FileName);
+                string extentions = Path.GetExtension(courses.ImageUpload.FileName);
+                fileName = fileName + extentions;
+                courses.img_course = "~/Content/Images/" + fileName;
+                courses.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Content/Image"), fileName));
+
+            }
+
             if (ModelState.IsValid)
             {
                 db.Courses.Add(courses);
