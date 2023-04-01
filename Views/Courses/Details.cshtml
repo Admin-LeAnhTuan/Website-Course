@@ -9,95 +9,64 @@
     <div class="d-flex flex-column gap-3" style="flex: 2">
         <h4 class="fz-32 fw-700">@Html.DisplayFor(model => model.title)</h4>
 
-        <p class="fz-14">
-            @Html.DisplayFor(model => model.description)
-        </p>
+<div>
+    <h4>Courses</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.LabelFor(model => model.img_course, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        </dt>
 
         <h5 class="fz-20 fw-700">Nội dung khóa học</h5>
 
-        <h6 class="fz-14">100 Bài học - Thời lương @Html.DisplayFor(model => model.duration)</h6>
-
-        <ul class="d-flex gap-3 flex-column">
-            <li class="d-flex justify-content-between pb-2"
-                style="border-bottom: 1px rgba(0, 0, 0, 0.1) solid">
-                <div class="d-flex gap-1 align-items-center">
-                    <div class="course__icon" style="transform: translateY(-10%)">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
-                    <h6 class="fz-14">1. Giới thiệu khóa học</h6>
-                </div>
-
-                <h6 class="fz-14 text-light-dark">01:03</h6>
-            </li>
-
-            <li class="d-flex justify-content-between pb-2"
-                style="border-bottom: 1px rgba(0, 0, 0, 0.1) solid">
-                <div class="d-flex gap-1 align-items-center">
-                    <div class="course__icon" style="transform: translateY(-10%)">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
-                    <h6 class="fz-14">1. Giới thiệu khóa học</h6>
-                </div>
-
-                <h6 class="fz-14 text-light-dark">01:03</h6>
-            </li>
-
-            <li class="d-flex justify-content-between pb-2"
-                style="border-bottom: 1px rgba(0, 0, 0, 0.1) solid">
-                <div class="d-flex gap-1 align-items-center">
-                    <div class="course__icon" style="transform: translateY(-10%)">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
-                    <h6 class="fz-14">1. Giới thiệu khóa học</h6>
-                </div>
-
-                <h6 class="fz-14 text-light-dark">01:03</h6>
-            </li>
-        </ul>
-    </div>
-
-    <div class="d-flex flex-column px-4" style="flex: 1">
-        <div class="course__demo d-flex justify-content-between align-items-center position-relative">
-            <img src="https://files.fullstack.edu.vn/f8-prod/courses/21/63e1bcbaed1dd.png"
-                 alt=""
-                 class="w-100 bg--img"
-                 style="height: 300px; border-radius: 20px" />
-
-            <div class="course__demo--icon" style="z-index: 1">
-                <i class="fa-solid fa-play"></i>
-            </div>
+        <dt>
+            @Html.LabelFor(model => model.img_course, "Tên Khóa Học", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
 
             <h6 class="fz-16 text-white">Xem giới thiệu khóa học</h6>
         </div>
 
-        <div class="mt-4 d-flex flex-column gap-3 align-items-center">
-            <h2 class="fz-32 text-primary fw-400">Miễn phí</h2>
+        <dt>
+            @Html.LabelFor(model => model.img_course, "Tiêu Đề", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        </dt>
 
             <button class="btn btn--primary">ĐĂNG KÝ HỌC</button>
         </div>
 
-        <div class="d-flex justify-content-center">
-            <ul class="d-flex flex-column gap-3 mt-4" style="width: max-content">
-                <li class="d-flex px-4 align-items-center">
-                    <i class="fa-solid fa-gauge"></i>
+        <dt>
+            @Html.LabelFor(model => model.img_course, "Tên Khóa Học", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        </dt>
 
                     <h6 class="px-4 fz-14 text-light-dark">Trình độ cơ bản</h6>
                 </li>
 
-                <li class="d-flex px-4 align-items-center">
-                    <i class="fa-solid fa-list"></i>
-                    <h6 class="px-4 fz-14 text-light-dark">
-                        Tổng số <strong>100</strong> bài học
-                    </h6>
-                </li>
+        <dt>
+            @Html.LabelFor(model => model.img_course, "Mô Tả Khóa Học", htmlAttributes: new { @class = "control-label col-md-2" })
 
-                <li class="d-flex px-4 align-items-center">
-                    <i class="fa-solid fa-clock"></i>
+        </dt>
 
-                    <h6 class="px-4 fz-14 text-light-dark">
-                        Thời lượng <strong>10 giờ 19 phút</strong>
-                    </h6>
-                </li>
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+         
+        <dt>
+            @Html.LabelFor(model => model.img_course, "Giá Khóa Học", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        </dt>
+
+        <dd>
+            @Html.HiddenFor(model => model.img_course, new { htmlAttributes = new { @class = "form-control" } })
+            <img src="@Url.Content(Model.img_course)" style="height: 200px; width:200px; margin:10px;" id="preViewImage" />
+            @*<input type="file" name="ImageUpload" value="" accept="" onchange="ShowImage(this, document.getElementById('preViewImage'))" />*@
+            @Html.ValidationMessageFor(model => model.img_course, "", new { @class = "text-danger" })
+        </dd>
+
+        <dt>
+            @Html.LabelFor(model => model.img_course, "Thời Gian", htmlAttributes: new { @class = "control-label col-md-2" })
+        </dt>
 
                 <li class="d-flex px-4 align-items-center">
                     <i class="fa-solid fa-battery-full"></i>
