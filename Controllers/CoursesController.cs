@@ -42,7 +42,7 @@ namespace Course.Controllers
         {
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name");
-            return View();
+            return View(new Courses());
         }
 
         // POST: Courses/Create

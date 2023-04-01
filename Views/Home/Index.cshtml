@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Course.Models.Courses>
+
+@{
     ViewBag.Title = "Home Page";
 }
 <div class="hero swiper">
@@ -83,34 +85,38 @@
     <h2 class="text-default fz-24 fw-900">Khóa học miễn phí</h2>
 
     <div class="d-flex gap-3 flex-wrap mt-3">
-        <div class="course"
-             style="
+
+        @foreach (var item in Model)
+        {
+            <div class="course"
+                 style="
             background-image: url(https://files.fullstack.edu.vn/f8-prod/courses/7.png);
           ">
-            <div class="course__overlay">
-                <a href="" class="px-3 py-2 bg-white text-default border--lg">Tiếp tục học</a>
+                <div class="course__overlay">
+                    <a href="/Courses/@Html.DisplayFor(modelItem => item.course_id)" class="px-3 py-2 bg-white text-default border--lg">Tiếp tục học</a>
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
 <script>
-      var swiper = new Swiper(".swiper", {
+    var swiper = new Swiper(".swiper", {
         loop: true,
         spaceBetween: 30,
         autoplay: {
-          delay: 2500,
-          disableOnInteraction: false,
+            delay: 2500,
+            disableOnInteraction: false,
         },
         pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
+            el: ".swiper-pagination",
+            clickable: true,
         },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
         },
-      });
+    });
 </script>
