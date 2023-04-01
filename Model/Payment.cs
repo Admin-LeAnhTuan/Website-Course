@@ -1,4 +1,4 @@
-namespace Course.Models
+namespace Course.Model
 {
     using System;
     using System.Collections.Generic;
@@ -10,6 +10,7 @@ namespace Course.Models
     public partial class Payment
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int payment_id { get; set; }
 
         public int? enrollment_id { get; set; }

@@ -1,4 +1,4 @@
-namespace Course.Models
+namespace Course.Model
 {
     using System;
     using System.Collections.Generic;
@@ -7,21 +7,16 @@ namespace Course.Models
     using System.Data.Entity.Spatial;
 
     [Table("Course")]
-    public partial class Courses
+    public partial class Course
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Courses()
-        {
-            Units = new HashSet<Unit>();
-        }
-
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int course_id { get; set; }
 
         [StringLength(255)]
         public string title { get; set; }
 
-        [StringLength(255)]
+        [Column(TypeName = "text")]
         public string description { get; set; }
 
         [StringLength(255)]
@@ -33,16 +28,10 @@ namespace Course.Models
         [StringLength(128)]
         public string userid { get; set; }
 
-        [StringLength(255)]
-        public string img_course { get; set; }
-
         public int? category_id { get; set; }
 
         public virtual AspNetUser AspNetUser { get; set; }
 
         public virtual Category Category { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Unit> Units { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace Course.Models
+namespace Course.Model
 {
     using System;
     using System.Collections.Generic;
@@ -16,6 +16,7 @@ namespace Course.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int enrollment_id { get; set; }
 
         public int? course_id { get; set; }
