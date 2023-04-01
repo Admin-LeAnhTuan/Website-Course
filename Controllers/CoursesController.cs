@@ -8,7 +8,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Course.Models;
-using System.IO;
 
 namespace Course.Controllers
 {

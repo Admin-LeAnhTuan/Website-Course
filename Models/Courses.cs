@@ -11,10 +11,6 @@ namespace Course.Models
     public partial class Courses
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Courses()
-        {
-            img_course = "~/Content/Images/";
-        }
 
         [Key]
         public int course_id { get; set; }
