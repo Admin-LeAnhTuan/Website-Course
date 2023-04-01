@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -49,10 +50,23 @@ namespace Course.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "title,description,price,duration")] Courses courses)
+        public ActionResult Create([Bind(Include = "title,description,price,duration")] Courses courses, HttpPostedFileBase ImageUpload)
         {
+
+            
+
             if (ModelState.IsValid)
             {
+                if (ImageUpload != null && ImageUpload.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                    string extentions = Path.GetExtension(ImageUpload.FileName);
+                    fileName = fileName + extentions;
+                    courses.img_course = "~/Content/Images/" + fileName;
+                    string _part = Path.Combine(Server.MapPath("~/Content/Images/"), fileName);
+                    ImageUpload.SaveAs(_part);
+
+                }
                 db.Courses.Add(courses);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -75,6 +89,7 @@ namespace Course.Controllers
             {
                 return HttpNotFound();
             }
+
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email", courses.userid);
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name", courses.category_id);
             return View(courses);
@@ -85,10 +100,20 @@ namespace Course.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "course_id,title,description,price,duration,userid,category_id")] Courses courses)
+        public ActionResult Edit([Bind(Include = "course_id,title,description,price,duration,userid,category_id")] Courses courses, HttpPostedFileBase ImageUpload)
         {
             if (ModelState.IsValid)
             {
+                if (ImageUpload != null && ImageUpload.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
+                    string extentions = Path.GetExtension(ImageUpload.FileName);
+                    fileName = fileName + extentions;
+                    courses.img_course = "~/Content/Images/" + fileName;
+                    string _part = Path.Combine(Server.MapPath("~/Content/Images/"), fileName);
+                    ImageUpload.SaveAs(_part);
+
+                }
                 db.Entry(courses).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

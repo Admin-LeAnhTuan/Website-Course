@@ -41,6 +41,7 @@ CREATE TABLE Unit
 	Unit_id int identity(1,1) primary key,
 	lesson nvarchar(255),
 	course_id int,
+	url_unit nvarchar(255),
 	foreign key(course_id) references Course(course_id)
 )
 Go
