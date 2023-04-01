@@ -5,7 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="course__container d-flex mt-5 gap-5">
+    <div class="d-flex flex-column gap-3" style="flex: 2">
+        <h4 class="fz-32 fw-700">@Html.DisplayFor(model => model.title)</h4>
 
 <div>
     <h4>Courses</h4>
@@ -16,35 +18,30 @@
 
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AspNetUser.Email)
-        </dd>
+        <h5 class="fz-20 fw-700">Nội dung khóa học</h5>
 
         <dt>
             @Html.LabelFor(model => model.img_course, "Tên Khóa Học", htmlAttributes: new { @class = "control-label col-md-2" })
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
+            <h6 class="fz-16 text-white">Xem giới thiệu khóa học</h6>
+        </div>
 
         <dt>
             @Html.LabelFor(model => model.img_course, "Tiêu Đề", htmlAttributes: new { @class = "control-label col-md-2" })
 
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.title)
-        </dd>
+            <button class="btn btn--primary">ĐĂNG KÝ HỌC</button>
+        </div>
 
         <dt>
             @Html.LabelFor(model => model.img_course, "Tên Khóa Học", htmlAttributes: new { @class = "control-label col-md-2" })
 
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
+                    <h6 class="px-4 fz-14 text-light-dark">Trình độ cơ bản</h6>
+                </li>
 
         <dt>
             @Html.LabelFor(model => model.img_course, "Mô Tả Khóa Học", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -71,13 +68,12 @@
             @Html.LabelFor(model => model.img_course, "Thời Gian", htmlAttributes: new { @class = "control-label col-md-2" })
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.duration)
-        </dd>
+                <li class="d-flex px-4 align-items-center">
+                    <i class="fa-solid fa-battery-full"></i>
 
-    </dl>
+                    <h6 class="px-4 fz-14 text-light-dark">Học mọi lúc, mọi nơi</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.course_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

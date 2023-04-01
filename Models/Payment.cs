@@ -10,6 +10,7 @@ namespace Course.Models
     public partial class Payment
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int payment_id { get; set; }
 
         public int? enrollment_id { get; set; }

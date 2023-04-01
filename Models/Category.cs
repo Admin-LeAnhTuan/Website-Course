@@ -16,6 +16,7 @@ namespace Course.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int category_id { get; set; }
 
         [StringLength(255)]
@@ -23,5 +24,7 @@ namespace Course.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Courses> Courses { get; set; }
+
+        public List<Category> listCategory = new List<Category>();
     }
 }
