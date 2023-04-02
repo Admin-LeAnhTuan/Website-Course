@@ -12,7 +12,7 @@ namespace Course.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Enrollment()
         {
-            Payments = new HashSet<Payment>();
+            CoursePayments = new HashSet<CoursePayment>();
         }
 
         [Key]
@@ -30,6 +30,6 @@ namespace Course.Models
         public virtual AspNetUser AspNetUser { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<CoursePayment> CoursePayments { get; set; }
     }
 }

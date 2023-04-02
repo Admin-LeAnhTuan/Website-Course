@@ -6,15 +6,15 @@ namespace Course.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Payment")]
-    public partial class Payment
+    [Table("CoursePayment")]
+    public partial class CoursePayment
     {
         [Key]
-        public int payment_id { get; set; }
+        public int Payment_id { get; set; }
 
         public int? enrollment_id { get; set; }
 
-        public DateTime? payment_date { get; set; }
+        public DateTime? Payment_date { get; set; }
 
         public double? amount { get; set; }
 

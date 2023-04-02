@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Course.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Course.Controllers
 {
@@ -67,13 +68,14 @@ namespace Course.Controllers
                     ImageUpload.SaveAs(_part);
 
                 }
-                db.Courses.Add(courses);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
+                /*return RedirectToAction("Index");*/
+            }
+            courses.userid = User.Identity.GetUserId();
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email", courses.userid);
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name", courses.category_id);
+            db.Courses.Add(courses);
+            db.SaveChanges();
             return View(courses);
         }
 
@@ -148,6 +150,11 @@ namespace Course.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+       /* public ActionResult Unit(int id) { 
+            return 
+        }
+*/
 
         protected override void Dispose(bool disposing)
         {

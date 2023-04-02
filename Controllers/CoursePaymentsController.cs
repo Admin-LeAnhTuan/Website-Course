@@ -10,112 +10,112 @@ using Course.Models;
 
 namespace Course.Controllers
 {
-    public class PaymentsController : Controller
+    public class CoursePaymentsController : Controller
     {
         private ModelContext db = new ModelContext();
 
-        // GET: Payments
+        // GET: CoursePayments
         public ActionResult Index()
         {
-            var payments = db.Payments.Include(p => p.Enrollment);
-            return View(payments.ToList());
+            var coursePayments = db.CoursePayments.Include(c => c.Enrollment);
+            return View(coursePayments.ToList());
         }
 
-        // GET: Payments/Details/5
+        // GET: CoursePayments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Payment payment = db.Payments.Find(id);
-            if (payment == null)
+            CoursePayment coursePayment = db.CoursePayments.Find(id);
+            if (coursePayment == null)
             {
                 return HttpNotFound();
             }
-            return View(payment);
+            return View(coursePayment);
         }
 
-        // GET: Payments/Create
+        // GET: CoursePayments/Create
         public ActionResult Create()
         {
             ViewBag.enrollment_id = new SelectList(db.Enrollments, "enrollment_id", "users_id");
             return View();
         }
 
-        // POST: Payments/Create
+        // POST: CoursePayments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "payment_id,enrollment_id,payment_date,amount")] Payment payment)
+        public ActionResult Create([Bind(Include = "Payment_id,enrollment_id,Payment_date,amount")] CoursePayment coursePayment)
         {
             if (ModelState.IsValid)
             {
-                db.Payments.Add(payment);
+                db.CoursePayments.Add(coursePayment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.enrollment_id = new SelectList(db.Enrollments, "enrollment_id", "users_id", payment.enrollment_id);
-            return View(payment);
+            ViewBag.enrollment_id = new SelectList(db.Enrollments, "enrollment_id", "users_id", coursePayment.enrollment_id);
+            return View(coursePayment);
         }
 
-        // GET: Payments/Edit/5
+        // GET: CoursePayments/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Payment payment = db.Payments.Find(id);
-            if (payment == null)
+            CoursePayment coursePayment = db.CoursePayments.Find(id);
+            if (coursePayment == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.enrollment_id = new SelectList(db.Enrollments, "enrollment_id", "users_id", payment.enrollment_id);
-            return View(payment);
+            ViewBag.enrollment_id = new SelectList(db.Enrollments, "enrollment_id", "users_id", coursePayment.enrollment_id);
+            return View(coursePayment);
         }
 
-        // POST: Payments/Edit/5
+        // POST: CoursePayments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "payment_id,enrollment_id,payment_date,amount")] Payment payment)
+        public ActionResult Edit([Bind(Include = "Payment_id,enrollment_id,Payment_date,amount")] CoursePayment coursePayment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(payment).State = EntityState.Modified;
+                db.Entry(coursePayment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.enrollment_id = new SelectList(db.Enrollments, "enrollment_id", "users_id", payment.enrollment_id);
-            return View(payment);
+            ViewBag.enrollment_id = new SelectList(db.Enrollments, "enrollment_id", "users_id", coursePayment.enrollment_id);
+            return View(coursePayment);
         }
 
-        // GET: Payments/Delete/5
+        // GET: CoursePayments/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Payment payment = db.Payments.Find(id);
-            if (payment == null)
+            CoursePayment coursePayment = db.CoursePayments.Find(id);
+            if (coursePayment == null)
             {
                 return HttpNotFound();
             }
-            return View(payment);
+            return View(coursePayment);
         }
 
-        // POST: Payments/Delete/5
+        // POST: CoursePayments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Payment payment = db.Payments.Find(id);
-            db.Payments.Remove(payment);
+            CoursePayment coursePayment = db.CoursePayments.Find(id);
+            db.CoursePayments.Remove(coursePayment);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

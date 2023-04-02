@@ -21,19 +21,10 @@ namespace Course.Models
         [StringLength(255)]
         public string lesson { get; set; }
 
-        [StringLength(255)]
-        public string title { get; set; }
-
-        [StringLength(255)]
-        public string description { get; set; }
-
-        [StringLength(500)]
-        public string url_unit { get; set; }
-
-        [StringLength(255)]
-        public string duration { get; set; }
-
         public int? course_id { get; set; }
+
+        [StringLength(255)]
+        public string url_unit { get; set; }
 
         public virtual Courses Course { get; set; }
 

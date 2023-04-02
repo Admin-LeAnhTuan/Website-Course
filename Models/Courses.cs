@@ -5,12 +5,16 @@ namespace Course.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-    using System.Web;
 
     [Table("Course")]
     public partial class Courses
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Courses()
+        {
+            Reviews = new HashSet<Review>();
+            Units = new HashSet<Unit>();
+        }
 
         [Key]
         public int course_id { get; set; }
@@ -24,7 +28,8 @@ namespace Course.Models
         [StringLength(255)]
         public string price { get; set; }
 
-        public TimeSpan? duration { get; set; }
+        [StringLength(255)]
+        public string duration { get; set; }
 
         [StringLength(128)]
         public string userid { get; set; }
@@ -43,7 +48,5 @@ namespace Course.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Unit> Units { get; set; }
-        [NotMapped]
-        public HttpPostedFileBase ImageUpload { get; set; }
     }
 }
