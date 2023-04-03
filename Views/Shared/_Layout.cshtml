@@ -101,13 +101,29 @@
                 </div>
 
                 <div class="header__user position-relative">
-                    <span>
-                        <img class="border-circle"
-                             id="user-event"
-                             style="width: 28px; height: 28px"
-                             src="https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg"
-                             alt="avt user" />
-                    </span>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <span>
+                            <img class="border-circle"
+                                 id="user-event"
+                                 style="width: 28px; height: 28px"
+                                 src="https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg"
+                                 alt="avt user" />
+
+                        </span>
+                    }
+                    else
+                    {
+                        <a href="/Account/Login">
+                            <img class="border-circle"
+                                 @*id="user-event"*@
+                                 style="width: 28px; height: 28px"
+                                 src="https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg"
+                                 alt="avt user" />
+
+                        </a>
+                    }
+
 
                     <div class="user__popup popup shadow-lg border-m">
                         <div class="user__info d-flex gap-3 align-items-center border-bottom-grey pb-3">
@@ -117,7 +133,12 @@
                                      src="https://fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg"
                                      alt="avt user" />
                             </a>
-                            <h5 class="fw-500 fz-18 text-default">Lỗi Tạ</h5>
+                            <h5 class="fw-500 fz-12 text-default">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                  @User.Identity.Name
+                                } 
+                            </h5>
                         </div>
                         <div class="py-2-5 border-bottom-grey">
                             <a href="">Trang cá nhân</a>
@@ -136,14 +157,17 @@
                             <a href="">Cài đặt</a>
                         </div>
                         <div>
-                            <a href="/Account/Login">Đăng xuất</a>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <button type="submit" style="background-color: #fff;">Đăng xuất</button>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-        </div>
     <div class="categories">
         <ul class="categories__list d-flex flex-column gap-3 align-items-center">
             <li class="categories__item">

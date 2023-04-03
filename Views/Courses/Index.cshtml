@@ -10,7 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <div class="content">
-    <h2 class="text-default fz-24 fw-900">Khóa học miễn phí</h2>
+    <h2 class="text-default fz-24 fw-900">Danh sách khóa học của bạn</h2>
     <div class="d-flex gap-3 flex-wrap mt-3">
         @foreach (var item in Model)
         {
@@ -21,13 +21,12 @@
                      margin:10px;
                     background-image: url(@Url.Content(item.img_course));
             ">
-                @*<p class="course"><img src="@Url.Content(item.img_course)" /></p>*@
                 <div class="course__overlay">
                     <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem chi tiết</a>
                     <a href="/Units/Create" class="px-3 py-2 bg-white text-default border--lg">Thêm bài học</a>
                     <a href="/Courses/Delete/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xóa</a>
+                <h2 style="text-transform: capitalize" class="fz-24 text-white fw-500">@item.title</h2>
                 </div>
-                <h2 style="text-transform: capitalize" class="fz-24 text-default fw-500">@item.title</h2>
             </div>
 
         }

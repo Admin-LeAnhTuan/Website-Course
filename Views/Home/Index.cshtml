@@ -91,19 +91,17 @@
         {
 
             <div class="course"
-                 style="
-            background-image: url();
-          ">
-                <p><img src="@Url.Content(item.img_course)" /></p>
+                 style=" background-image: url(@Url.Content(item.img_course));">
                 <div class="course__overlay">
-                    <a href="" class="px-3 py-2 bg-white text-default border--lg">Tiếp tục học</a>
+                    <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem khóa học</a>
+                    <a href="" class="px-3 py-2 bg-white text-default border--lg">Mua khóa học </a>
                 </div>
             </div>
 
         }
     </div>
 </div>
-
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
 <script>
