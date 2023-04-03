@@ -94,7 +94,8 @@
                  style=" background-image: url(@Url.Content(item.img_course));">
                 <div class="course__overlay">
                     <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem khóa học</a>
-                    <a href="" class="px-3 py-2 bg-white text-default border--lg">Mua khóa học </a>
+
+                    <a href="@Url.Action("Payment","Courses", new { course_id = item.course_id})" class="px-3 py-2 bg-white text-default border--lg">Thanh toán</a>
                 </div>
             </div>
 
