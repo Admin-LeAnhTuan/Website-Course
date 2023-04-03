@@ -6,22 +6,29 @@ namespace Course.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Category")]
-    public partial class Category
+    [Table("Unit")]
+    public partial class Unit
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Category()
+        public Unit()
         {
-            Courses = new HashSet<Courses>();
+            Tests = new HashSet<Test>();
         }
 
         [Key]
-        public int category_id { get; set; }
+        public int Unit_id { get; set; }
 
         [StringLength(255)]
-        public string Name { get; set; }
+        public string lesson { get; set; }
+
+        public int? course_id { get; set; }
+
+        [StringLength(255)]
+        public string url_unit { get; set; }
+
+        public virtual Courses Course { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Courses> Courses { get; set; }
+        public virtual ICollection<Test> Tests { get; set; }
     }
 }

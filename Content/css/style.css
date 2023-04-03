@@ -569,3 +569,18 @@ ul {
     padding: 0 40px 0 20px;
     margin: 0 auto;
 }
+
+
+.border-left-top-right {
+    border-bottom: solid 1px #ccc;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+}
+
+.fz-12 {
+    font-size: 12px;
+}
+
+.unit__comment {
+    background-color: #29303b;
+}

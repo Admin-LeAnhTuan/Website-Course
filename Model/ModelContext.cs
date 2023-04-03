@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace Course.Models
+namespace Course.Model
 {
     public partial class ModelContext : DbContext
     {
@@ -17,12 +17,10 @@ namespace Course.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Courses> Courses { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Enrollment> Enrollments { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
-        public virtual DbSet<Test> Tests { get; set; }
-        public virtual DbSet<Unit> Units { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -56,14 +54,13 @@ namespace Course.Models
                 .WithOptional(e => e.AspNetUser)
                 .HasForeignKey(e => e.users_id);
 
+            modelBuilder.Entity<Course>()
+                .Property(e => e.description)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Review>()
                 .Property(e => e.comment)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Unit>()
-                .HasMany(e => e.Tests)
-                .WithOptional(e => e.Unit)
-                .HasForeignKey(e => e.Test_unit_id);
         }
     }
 }
