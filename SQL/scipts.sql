@@ -1,17 +1,17 @@
-	USE MASTER
-	GO
+USE MASTER
+GO
 
-	IF EXISTS (SELECT NAME FROM SYS.DATABASES WHERE NAME = 'Course')
-		DROP DATABASE Course
-	GO
+IF EXISTS (SELECT NAME FROM SYS.DATABASES WHERE NAME = 'Course')
+	DROP DATABASE Course
+GO
 
-	CREATE DATABASE Course
-	ON (NAME = 'Course_DAT', FILENAME = 'D:\Workspace_SQL\Web_Course\Course.MDF')
-	LOG ON(NAME = 'Course_LOG', FILENAME = 'D:\Workspace_SQL\Web_Course\Course.LDF')
-	GO
+CREATE DATABASE Course
+ON (NAME = 'Course_DAT', FILENAME = 'D:\Workspace_SQL\Web_Course\Course.MDF')
+LOG ON(NAME = 'Course_LOG', FILENAME = 'D:\Workspace_SQL\Web_Course\Course.LDF')
+GO
 
-	USE Course
-	GO
+USE Course
+GO
 
 CREATE TABLE Category
 (
@@ -67,11 +67,11 @@ CREATE TABLE Enrollment
 )
 GO
 
-CREATE TABLE Payment
+CREATE TABLE CoursePayment
 (
-	payment_id int identity(1,1) primary key,
+	Payment_id int identity(1,1) primary key,
 	enrollment_id int,
-	payment_date datetime,
+	Payment_date datetime,
 	amount float
 	foreign key (enrollment_id) references Enrollment(enrollment_id)
 
@@ -86,5 +86,6 @@ CREATE TABLE Review
 	rating float,
 	comment text,
 	review_date datetime
-	foreign key (users_id) references AspNetUsers(Id)
+	foreign key (users_id) references AspNetUsers(Id),
+	foreign key (course_id) references Course(course_id)
 )

@@ -83,23 +83,24 @@
         <div class="swiper-pagination"></div>
     </div>
 
-    <div class="content">
-        <h2 class="text-default fz-24 fw-900">Khóa học miễn phí</h2>
 
-        <div style=" padding: 0 40px;" class="d-flex gap-3 flex-wrap mt-3">
+<div class="content">
+    <h2 class="text-default fz-24 fw-900">Khóa học miễn phí</h2>
+    <div class="d-flex gap-3 flex-wrap mt-3">
+        @foreach (var item in Model)
+        {
 
-            @foreach (var item in Model)
-            {
-                <div class="course"
-                     style="
-            background-image: url(https://files.fullstack.edu.vn/f8-prod/courses/7.png);
+            <div class="course"
+                 style="
+            background-image: url();
           ">
-                    <div class="course__overlay">
-                        <a href="/Courses/Details/@Html.DisplayFor(modelItem => item.course_id)" class="px-3 py-2 bg-white text-default border--lg">Tiếp tục học</a>
-                    </div>
+                <p><img src="@Url.Content(item.img_course)" /></p>
+                <div class="course__overlay">
+                    <a href="" class="px-3 py-2 bg-white text-default border--lg">Tiếp tục học</a>
                 </div>
-            }
-        </div>
+            </div>
+
+        }
     </div>
 </div>
 

@@ -74,8 +74,13 @@ namespace Course.Controllers
                 return RedirectToAction("Index");
             }
 
+                /*return RedirectToAction("Index");*/
+            }
+            courses.userid = User.Identity.GetUserId();
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email", courses.userid);
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name", courses.category_id);
+            db.Courses.Add(courses);
+            db.SaveChanges();
             return View(courses);
         }
 
@@ -150,6 +155,11 @@ namespace Course.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+       /* public ActionResult Unit(int id) { 
+            return 
+        }
+*/
 
         protected override void Dispose(bool disposing)
         {

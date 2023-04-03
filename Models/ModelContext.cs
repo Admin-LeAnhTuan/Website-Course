@@ -18,8 +18,8 @@ namespace Course.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Courses> Courses { get; set; }
+        public virtual DbSet<CoursePayment> CoursePayments { get; set; }
         public virtual DbSet<Enrollment> Enrollments { get; set; }
-        public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Test> Tests { get; set; }
         public virtual DbSet<Unit> Units { get; set; }

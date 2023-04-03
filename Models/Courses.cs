@@ -13,6 +13,8 @@ namespace Course.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Courses()
         {
+
+            Reviews = new HashSet<Review>();
             Units = new HashSet<Unit>();
         }
 
@@ -57,5 +59,6 @@ namespace Course.Models
             }
             return originalString;
         }
+
     }
 }

@@ -20,7 +20,9 @@
     <div style="width: 100vw; height: 68px;" class="position-relative">
         <div class="header d-flex justify-content-between">
             <div class="header__logo d-flex gap-3 align-items-center">
-                <a href="/">
+
+                <a href="/Home/Index">
+
                     <img class="border-s"
                          style="height: 38px; width: 38px"
                          src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png" />
@@ -127,14 +129,15 @@
                             <a href="">Bài viết của tôi</a>
                         </div>
 
-                    <div class="py-2-5 border-bottom-grey">
-                        <a href="">Bài viết đã lưu</a>
-                    </div>
-                    <div class="py-2-5">
-                        <a href="">Cài đặt</a>
-                    </div>
-                    <div>
-                        <a href="/Account/Login">Đăng xuất</a>
+                        <div class="py-2-5 border-bottom-grey">
+                            <a href="">Bài viết đã lưu</a>
+                        </div>
+                        <div class="py-2-5">
+                            <a href="">Cài đặt</a>
+                        </div>
+                        <div>
+                            <a href="/Account/Login">Đăng xuất</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -178,179 +181,181 @@
             </li>
         </ul>
     </div>
+
         @RenderBody()   
 
         
+
     <footer class="footer">
-            <div class="footer__info container d-flex gap-4 justify-content-center">
-                <div class="d-flex flex-column gap-3 flex-1 px-2" style="width: 20%">
-                    <div class="d-flex align-items-center gap-2">
-                        <img class="border-s"
-                             style="height: 38px; width: 38px"
-                             src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png" />
+        <div class="footer__info container d-flex gap-4 justify-content-center">
+            <div class="d-flex flex-column gap-3 flex-1 px-2" style="width: 20%">
+                <div class="d-flex align-items-center gap-2">
+                    <img class="border-s"
+                         style="height: 38px; width: 38px"
+                         src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png" />
 
-                        <h4 class="fw-500 fz-16 text-white">Learn English for future</h4>
-                    </div>
+                    <h4 class="fw-500 fz-16 text-white">Learn English for future</h4>
+                </div>
 
-                    <ul class="d-flex flex-column gap-1 flex-1 px-2">
-                        <li class="text-grey">
-                            <p class="">
-                                Điện thoại: <a href="tel:0246.329.1102">0246.329.1102</a><br />Email:
-                                <a href="mailto:contact@fullstack.edu.vn">contact@fullstack.edu.vn</a><br />Địa chỉ: Số 26 Dương Đình Nghệ, Phường Yên Hòa, Quận Cầu
-                                Giấy, TP. Hà Nội
-                            </p>
+                <ul class="d-flex flex-column gap-1 flex-1 px-2">
+                    <li class="text-grey">
+                        <p class="">
+                            Điện thoại: <a href="tel:0246.329.1102">0246.329.1102</a><br />Email:
+                            <a href="mailto:contact@fullstack.edu.vn">contact@fullstack.edu.vn</a><br />Địa chỉ: Số 26 Dương Đình Nghệ, Phường Yên Hòa, Quận Cầu
+                            Giấy, TP. Hà Nội
+                        </p>
+                    </li>
+                </ul>
+
+                <img class=""
+                     style="max-height: 21px; width: fit-content"
+                     src="https://fullstack.edu.vn/static/media/dmca.2593d9ecf1c982e3c3a2.png"
+                     alt="DMCA" />
+            </div>
+
+            <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
+                 style="width: 20%">
+                <div class="d-flex justify-content-center flex-column"
+                     style="width: fit-content">
+                    <h4 class="fz-16 fw-500 text-white capitalize">Về F8</h4>
+                    <ul>
+                        <li>
+                            <a href="" class="text-grey fz-14">Giới thiệu</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Liên hệ</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Điều khoản</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Bảo mật</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Cơ hội việc làm</a>
                         </li>
                     </ul>
-
-                    <img class=""
-                         style="max-height: 21px; width: fit-content"
-                         src="https://fullstack.edu.vn/static/media/dmca.2593d9ecf1c982e3c3a2.png"
-                         alt="DMCA" />
-                </div>
-
-                <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
-                     style="width: 20%">
-                    <div class="d-flex justify-content-center flex-column"
-                         style="width: fit-content">
-                        <h4 class="fz-16 fw-500 text-white capitalize">Về F8</h4>
-                        <ul>
-                            <li>
-                                <a href="" class="text-grey fz-14">Giới thiệu</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Liên hệ</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Điều khoản</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Bảo mật</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Cơ hội việc làm</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
-                     style="width: 20%">
-                    <div class="d-flex justify-content-center flex-column"
-                         style="width: fit-content">
-                        <h4 class="fz-16 fw-500 text-white capitalize">Sản phẩm</h4>
-                        <ul>
-                            <li>
-                                <a href="" class="text-grey fz-14">Game Nester</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Game CSS Diner</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Game CSS Selectors</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Game Froggy</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Game Froggy Pro</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Game Scoops</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
-                     style="width: 20%">
-                    <div class="d-flex justify-content-center flex-column"
-                         style="width: fit-content">
-                        <h4 class="fz-16 fw-500 text-white capitalize">Công cụ</h4>
-                        <ul>
-                            <li>
-                                <a href="" class="text-grey fz-14">Tạo CV xin việc</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Rút gọn liên kết</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Clip-path maker</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Snippet generator</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Cảnh báo sờ tay lên mặt</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
-                     style="width: 20%">
-                    <div class="d-flex justify-content-center flex-column"
-                         style="width: fit-content">
-                        <h4 class="fz-16 fw-500 text-white capitalize">
-                            CÔNG TY CỔ PHẦN CÔNG NGHỆ GIÁO DỤC F8
-                        </h4>
-                        <ul>
-                            <li>
-                                <a href="" class="text-grey fz-14">Mã số thuế: 0109922901</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">Ngày thành lập: 04/03/2022</a>
-                            </li>
-                            <li>
-                                <a href="" class="text-grey fz-14">
-                                    Lĩnh vực: Công nghệ, giáo dục, lập trình. F8 xây dựng và phát
-                                    triển những sản phẩm mang lại giá trị cho cộng đồng.
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
 
-            <div  class="d-flex justify-content-between container mt-5 align-items-center">
-                <p class="fz-14 text-grey">
-                    © 2018 - 2023 F8. Nền tảng học lập trình hàng đầu Việt Nam
-                </p>
-
-                <div class="d-flex gap-3">
-                    <ul class="m-0 d-flex gap-3 align-items-center">
+            <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
+                 style="width: 20%">
+                <div class="d-flex justify-content-center flex-column"
+                     style="width: fit-content">
+                    <h4 class="fz-16 fw-500 text-white capitalize">Sản phẩm</h4>
+                    <ul>
                         <li>
-                            <a href="https://www.youtube.com/">
-                                <i style="
+                            <a href="" class="text-grey fz-14">Game Nester</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Game CSS Diner</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Game CSS Selectors</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Game Froggy</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Game Froggy Pro</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Game Scoops</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
+                 style="width: 20%">
+                <div class="d-flex justify-content-center flex-column"
+                     style="width: fit-content">
+                    <h4 class="fz-16 fw-500 text-white capitalize">Công cụ</h4>
+                    <ul>
+                        <li>
+                            <a href="" class="text-grey fz-14">Tạo CV xin việc</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Rút gọn liên kết</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Clip-path maker</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Snippet generator</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Cảnh báo sờ tay lên mặt</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column gap-2 flex-1 px-2 align-items-center"
+                 style="width: 20%">
+                <div class="d-flex justify-content-center flex-column"
+                     style="width: fit-content">
+                    <h4 class="fz-16 fw-500 text-white capitalize">
+                        CÔNG TY CỔ PHẦN CÔNG NGHỆ GIÁO DỤC F8
+                    </h4>
+                    <ul>
+                        <li>
+                            <a href="" class="text-grey fz-14">Mã số thuế: 0109922901</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">Ngày thành lập: 04/03/2022</a>
+                        </li>
+                        <li>
+                            <a href="" class="text-grey fz-14">
+                                Lĩnh vực: Công nghệ, giáo dục, lập trình. F8 xây dựng và phát
+                                triển những sản phẩm mang lại giá trị cho cộng đồng.
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between container mt-5 align-items-center">
+            <p class="fz-14 text-grey">
+                © 2018 - 2023 F8. Nền tảng học lập trình hàng đầu Việt Nam
+            </p>
+
+            <div class="d-flex gap-3">
+                <ul class="m-0 d-flex gap-3 align-items-center">
+                    <li>
+                        <a href="https://www.youtube.com/">
+                            <i style="
                     font-size: 20px;
                     background-color: #eb2c3b;
                   "
-                                   class="fa-brands p-1 fa-youtube"></i>
-                            </a>
-                        </li>
+                               class="fa-brands p-1 fa-youtube"></i>
+                        </a>
+                    </li>
 
-                        <li>
-                            <a href="https://www.facebook.com/">
-                                <i style="
+                    <li>
+                        <a href="https://www.facebook.com/">
+                            <i style="
                     font-size: 20px;
                     background-color: #4867aa;
                   "
-                                   class="fa-brands p-1 fa-facebook-f"></i>
-                            </a>
-                        </li>
+                               class="fa-brands p-1 fa-facebook-f"></i>
+                        </a>
+                    </li>
 
-                        <li>
-                            <a href="https://www.tiktok.com/en/">
-                                <i style="
+                    <li>
+                        <a href="https://www.tiktok.com/en/">
+                            <i style="
                     font-size: 28px;
                     color: #ccc;
                   "
-                                   class="fa-brands p-1 fa-tiktok p"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                               class="fa-brands p-1 fa-tiktok p"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </footer>
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
