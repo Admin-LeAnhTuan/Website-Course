@@ -75,7 +75,6 @@ namespace Course.Controllers
             }
 
                 /*return RedirectToAction("Index");*/
-            }
             courses.userid = User.Identity.GetUserId();
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email", courses.userid);
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name", courses.category_id);
