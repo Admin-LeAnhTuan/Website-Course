@@ -68,13 +68,7 @@ namespace Course.Controllers
                     ImageUpload.SaveAs(_part);
 
                 }
-                db.Courses.Add(courses);
-                
-                db.SaveChanges();
-                return RedirectToAction("Index");
             }
-
-                /*return RedirectToAction("Index");*/
             courses.userid = User.Identity.GetUserId();
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email", courses.userid);
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name", courses.category_id);
@@ -115,8 +109,8 @@ namespace Course.Controllers
                     string fileName = Path.GetFileNameWithoutExtension(ImageUpload.FileName);
                     string extentions = Path.GetExtension(ImageUpload.FileName);
                     fileName = fileName + extentions;
-                    courses.img_course = "~/Content/Images/" + fileName;
-                    string _part = Path.Combine(Server.MapPath("~/Content/Images/"), fileName);
+                    courses.img_course = "/Content/Images/" + fileName;
+                    string _part = Path.Combine(Server.MapPath("/Content/Images/"), fileName);
                     ImageUpload.SaveAs(_part);
 
                 }
