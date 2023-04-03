@@ -82,7 +82,7 @@ namespace Course.Controllers
             db.SaveChanges();
             return View(courses);
         }
-
+      
         // GET: Courses/Edit/5
         public ActionResult Edit(int? id)
         {
