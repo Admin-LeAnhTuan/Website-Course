@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -15,20 +17,20 @@ namespace Course.Controllers
         private ModelContext db = new ModelContext();
 
         // GET: CoursePayments
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             var coursePayments = db.CoursePayments.Include(c => c.Enrollment);
-            return View(coursePayments.ToList());
+            return View(await coursePayments.ToListAsync());
         }
 
         // GET: CoursePayments/Details/5
-        public ActionResult Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoursePayment coursePayment = db.CoursePayments.Find(id);
+            CoursePayment coursePayment = await db.CoursePayments.FindAsync(id);
             if (coursePayment == null)
             {
                 return HttpNotFound();
@@ -48,12 +50,12 @@ namespace Course.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Payment_id,enrollment_id,Payment_date,amount")] CoursePayment coursePayment)
+        public async Task<ActionResult> Create([Bind(Include = "Payment_id,enrollment_id,Payment_date,amount")] CoursePayment coursePayment)
         {
             if (ModelState.IsValid)
             {
                 db.CoursePayments.Add(coursePayment);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -62,13 +64,13 @@ namespace Course.Controllers
         }
 
         // GET: CoursePayments/Edit/5
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoursePayment coursePayment = db.CoursePayments.Find(id);
+            CoursePayment coursePayment = await db.CoursePayments.FindAsync(id);
             if (coursePayment == null)
             {
                 return HttpNotFound();
@@ -82,12 +84,12 @@ namespace Course.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Payment_id,enrollment_id,Payment_date,amount")] CoursePayment coursePayment)
+        public async Task<ActionResult> Edit([Bind(Include = "Payment_id,enrollment_id,Payment_date,amount")] CoursePayment coursePayment)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(coursePayment).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.enrollment_id = new SelectList(db.Enrollments, "enrollment_id", "users_id", coursePayment.enrollment_id);
@@ -95,13 +97,13 @@ namespace Course.Controllers
         }
 
         // GET: CoursePayments/Delete/5
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoursePayment coursePayment = db.CoursePayments.Find(id);
+            CoursePayment coursePayment = await db.CoursePayments.FindAsync(id);
             if (coursePayment == null)
             {
                 return HttpNotFound();
@@ -112,11 +114,11 @@ namespace Course.Controllers
         // POST: CoursePayments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            CoursePayment coursePayment = db.CoursePayments.Find(id);
+            CoursePayment coursePayment = await db.CoursePayments.FindAsync(id);
             db.CoursePayments.Remove(coursePayment);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 

@@ -10,56 +10,27 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.duration)
-        </th>
-        <th></th>
-    </tr>
+<div class="content">
+    <h2 class="text-default fz-24 fw-900">Khóa học miễn phí</h2>
+    <div class="d-flex gap-3 flex-wrap mt-3">
+        @foreach (var item in Model)
+        {
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.duration)
-        </td>
-        <td>    
-            @Html.ActionLink("Edit", "Edit", new { id = item.course_id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.course_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.course_id }) |
-            <a href="/Units/Create/@Html.DisplayFor(model => item.course_id )">Add unit</a>
-        </td>
-    </tr>
-}
 
-</table>
+            <div class="course"
+                 style="
+                     margin:10px;
+                    background-image: url(@Url.Content(item.img_course);
+            ">
+                <p class="course"><img src="@Url.Content(item.img_course)" /></p>
+                <div class="course__overlay">
+                    <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem chi tiết</a>
+                    <a href="/Units/Create" class="px-3 py-2 bg-white text-default border--lg">Thêm bài học</a>
+                    <a href="/Courses/Delete/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xóa</a>
+                </div>
+                <h2 style="text-transform: capitalize" class="fz-24 text-default fw-500">@item.title</h2>
+            </div>
+
+        }
+    </div>
+</div>
