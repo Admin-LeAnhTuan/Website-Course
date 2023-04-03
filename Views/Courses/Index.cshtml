@@ -20,9 +20,9 @@
             <div class="course"
                  style="
                      margin:10px;
-                    background-image: url(@Url.Content(item.img_course);
+                    background-image: url(@Url.Content(item.img_course));
             ">
-                <p class="course"><img src="@Url.Content(item.img_course)" /></p>
+                @*<p class="course"><img src="@Url.Content(item.img_course)" /></p>*@
                 <div class="course__overlay">
                     <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem chi tiết</a>
                     <a href="/Units/Create" class="px-3 py-2 bg-white text-default border--lg">Thêm bài học</a>
