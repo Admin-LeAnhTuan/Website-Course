@@ -43,7 +43,7 @@ namespace Course.Controllers
         {
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name");
-            return View();
+            return View(new Courses());
         }
 
         // POST: Courses/Create
@@ -68,6 +68,11 @@ namespace Course.Controllers
                     ImageUpload.SaveAs(_part);
 
                 }
+                db.Courses.Add(courses);
+                
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
                 /*return RedirectToAction("Index");*/
             }

@@ -1,4 +1,4 @@
-namespace Course.Models
+namespace Course.Model
 {
     using System;
     using System.Collections.Generic;
@@ -10,6 +10,7 @@ namespace Course.Models
     public partial class Review
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int review_id { get; set; }
 
         public int? course_id { get; set; }

@@ -5,60 +5,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="unit__container d-flex" style="width: 100vw">
+    <div class="unit__main pb-5" style="flex: 3">
+        <iframe style="width: 100%"
+                height="680"
+                src="https://www.youtube.com/embed/tgbNymZ7vqY">
+        </iframe>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Course.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lesson)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.url_unit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.duration)
-        </th>
-        <th></th>
-    </tr>
+        <div class="mt-5 d-flex flex-column m-auto" style="width: 80%">
+            <h1 class="fz-28 fw-500">Phương pháp học lập trình của Admin F8?</h1>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lesson)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.url_unit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.duration)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Unit_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Unit_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Unit_id })
-        </td>
-    </tr>
-}
+            <div class="mt-3 fz-12">Cập nhật tháng 11 năm 2022</div>
 
-</table>
+            <p class="fz-16">
+                Tham gia các cộng đồng để cùng học hỏi, chia sẻ và "thám thính" xem
+                F8 sắp có gì mới nhé!
+            </p>
+        </div>
+    </div>
+
+    <div class="unit__comment d-flex flex-column" style="flex: 1">
+        <h3 class="fz-16 text-white p-3" style="border: solid 1px #808080">
+            Nội dung khóa học
+        </h3>
+
+        <ul class="d-flex flex-column justify-content-between">
+            <li class="d-flex flex-column py-3 px-4 border-left-top-right gap-1">
+                <a href="">
+                    <h6 class="fz-14 text-white">
+                        1. Mô hình Client - Server là gì?
+                    </h6>
+                    <span class="fz-12 text-white">
+                        <i class="fa-solid fa-circle-play"></i> 11:35
+                    </span>
+                </a>
+            </li>
+
+            <li class="d-flex flex-column py-3 px-4 border-left-top-right gap-1">
+                <a href="">
+                    <h6 class="fz-14 text-white">
+                        1. Mô hình Client - Server là gì?
+                    </h6>
+                    <span class="fz-12 text-white">
+                        <i class="fa-solid fa-circle-play"></i> 11:35
+                    </span>
+                </a>
+            </li>
+
+            <li class="d-flex flex-column py-3 px-4 border-left-top-right gap-1">
+                <a href="">
+                    <h6 class="fz-14 text-white">
+                        1. Mô hình Client - Server là gì?
+                    </h6>
+                    <span class="fz-12 text-white">
+                        <i class="fa-solid fa-circle-play"></i> 11:35
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+

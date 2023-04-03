@@ -20,7 +20,9 @@
     <div style="width: 100vw; height: 68px;" class="position-relative">
         <div class="header d-flex justify-content-between">
             <div class="header__logo d-flex gap-3 align-items-center">
+
                 <a href="/Home/Index">
+
                     <img class="border-s"
                          style="height: 38px; width: 38px"
                          src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png" />
@@ -141,6 +143,7 @@
             </div>
         </div>
     </div>
+        </div>
     <div class="categories">
         <ul class="categories__list d-flex flex-column gap-3 align-items-center">
             <li class="categories__item">
@@ -178,12 +181,11 @@
             </li>
         </ul>
     </div>
-    <div class="container">
-        @RenderBody()
-        <hr />
 
+        @RenderBody()   
 
-    </div>
+        
+
     <footer class="footer">
         <div class="footer__info container d-flex gap-4 justify-content-center">
             <div class="d-flex flex-column gap-3 flex-1 px-2" style="width: 20%">

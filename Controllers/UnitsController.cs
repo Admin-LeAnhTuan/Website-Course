@@ -49,6 +49,7 @@ namespace Course.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Unit_id,lesson,title,description,url_unit,duration,course_id")] Unit unit)
+
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +83,9 @@ namespace Course.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public ActionResult Edit([Bind(Include = "Unit_id,lesson,title,description,url_unit,duration,course_id")] Unit unit)
+
         {
             if (ModelState.IsValid)
             {
