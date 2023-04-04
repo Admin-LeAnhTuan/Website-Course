@@ -13,7 +13,7 @@ namespace Course.Controllers
     public class UnitsController : Controller
     {
         private ModelContext db = new ModelContext();
-
+        private List<Unit> units = new List<Unit>();
         // GET: Units
         public ActionResult Index()
         {
@@ -24,11 +24,15 @@ namespace Course.Controllers
         // GET: Units/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (id == null )          
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Unit unit = db.Units.Find(id);
+            Unit unit = db.Units.Where(u => u.Unit_id == id).FirstOrDefault();
+           unit.lstUnit= db.Units.Where(u => u.course_id == unit.course_id).ToList();
+            // unit.lstUnit là những cái unit của khóa học 
+            // bỏ nguyên cái list zo trong function để chuyển sang thời gian
+            // unit.duration xử lý để cho thời gian tăng lên
             if (unit == null)
             {
                 return HttpNotFound();

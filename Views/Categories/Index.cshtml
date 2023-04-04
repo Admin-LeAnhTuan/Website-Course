@@ -4,31 +4,73 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="categories">
+    <ul class="categories__list d-flex flex-column gap-3 align-items-center">
+        <li class="categories__item">
+            <div class="categories__item--add">
+                <a href="/Courses/Create"><i class="fa-solid fa-plus"></i></a>
+            </div>
+        </li>
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--active gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-house"></i>
+                <h6 class="text-default">Home</h6>
+            </a>
+        </li>
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-road"></i>
+                <h6 class="text-default">Lộ trình</h6>
+            </a>
 
-<h2>Index</h2>
+        </li>
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-lightbulb"></i>
+                <h6 class="text-default">Học</h6>
+            </a>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+        </li>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.category_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.category_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.category_id })
-        </td>
-    </tr>
-}
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-newspaper"></i>
+                <h6 class="text-default">Blog</h6>
+            </a>
 
-</table>
+        </li>
+    </ul>
+</div>
+<div class=" container">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.category_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.category_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.category_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p>
+        @Html.ActionLink("Back To Home", "Index","Home")
+    </p>
+</div>

@@ -4,31 +4,62 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<div class="content">
-    <h2 class="text-default fz-24 fw-900">Danh sách khóa học của bạn</h2>
-    <div class="d-flex gap-3 flex-wrap mt-3">
-        @foreach (var item in Model)
-        {
-
-
-            <div class="course"
-                 style="
-                     margin:10px;
-                    background-image: url(@Url.Content(item.img_course));
-            ">
-                <div class="course__overlay">
-                    <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem chi tiết</a>
-                    <a href="/Units/Create" class="px-3 py-2 bg-white text-default border--lg">Thêm bài học</a>
-                    <a href="/Courses/Delete/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xóa</a>
-                <h2 style="text-transform: capitalize" class="fz-24 text-white fw-500">@item.title</h2>
-                </div>
+<div class="categories">
+    <ul class="categories__list d-flex flex-column gap-3 align-items-center">
+        <li class="categories__item">
+            <div class="categories__item--add">
+                <a href="/Courses/Create"><i class="fa-solid fa-plus"></i></a>
             </div>
+        </li>
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--active gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-house"></i>
+                <h6 class="text-default">Home</h6>
+            </a>
+        </li>
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-road"></i>
+                <h6 class="text-default">Lộ trình</h6>
+            </a>
 
-        }
-    </div>
+        </li>
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-lightbulb"></i>
+                <h6 class="text-default">Học</h6>
+            </a>
+
+        </li>
+
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-newspaper"></i>
+                <h6 class="text-default">Blog</h6>
+            </a>
+
+        </li>
+    </ul>
 </div>
+
+
+    <div class="content">
+        <h2 class="text-default fz-24 fw-900">Danh sách khóa học của bạn</h2>
+        <div class="d-flex gap-3 flex-wrap mt-3">
+            @foreach (var item in Model)
+            {
+                <div class="course"
+                     style="
+                        margin:10px;
+                    background-image: url(@Url.Content(item.img_course));">
+                    <div class="course__overlay">
+                        <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem chi tiết</a>
+                        <a href="/Units/Create" class="px-3 py-2 bg-white text-default border--lg">Thêm bài học</a>
+                        <a href="/Courses/Edit/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Chỉnh Sửa</a>
+                        <a href="/Courses/Delete/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xóa</a>
+                        <h2 style="text-transform: capitalize" class="fz-24 text-white fw-500">@item.title</h2>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
