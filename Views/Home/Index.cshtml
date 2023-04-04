@@ -129,20 +129,22 @@
             @foreach (var item in Model)
             {
 
-            <div class="course"
-                 style=" background-image: url(@Url.Content(item.img_course));">
-                <div class="course__overlay">
-                    <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem khóa học</a>
+                <div class="course"
+                     style=" background-image: url(@Url.Content(item.img_course));">
+                    <div class="course__overlay">
+                        <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem khóa học</a>
 
-                    <a href="@Url.Action("Payment","Courses", new { course_id = item.course_id})" class="px-3 py-2 bg-white text-default border--lg">Thanh toán</a>
+                        <a href="@Url.Action("Payment", "Courses", new { course_id = item.course_id })" class="px-3 py-2 bg-white text-default border--lg">Thanh toán</a>
 
+                    </div>
                 </div>
 
             }
-        </div>
 
-    </div>
+        </div>
+            
 </div>
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
 <script>

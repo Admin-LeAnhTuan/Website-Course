@@ -189,9 +189,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
-    <Compile Include="Controllers\CoursePaymentsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
-    <Compile Include="Controllers\EnrollmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReviewsController.cs" />
@@ -206,11 +204,11 @@
     <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Courses.cs" />
-    <Compile Include="Models\CoursePayment.cs" />
-    <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Level.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModelContext.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\Unit.cs" />
@@ -225,7 +223,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\default.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -316,6 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

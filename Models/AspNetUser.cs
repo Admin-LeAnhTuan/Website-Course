@@ -14,7 +14,7 @@ namespace Course.Models
             AspNetUserClaims = new HashSet<AspNetUserClaim>();
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
             Courses = new HashSet<Courses>();
-            Enrollments = new HashSet<Enrollment>();
+            Payments = new HashSet<Payment>();
             Reviews = new HashSet<Review>();
             AspNetRoles = new HashSet<AspNetRole>();
         }
@@ -56,7 +56,7 @@ namespace Course.Models
         public virtual ICollection<Courses> Courses { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Enrollment> Enrollments { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }

@@ -18,7 +18,7 @@ namespace Course.Controllers
     public class CoursesController : Controller
     {
         private ModelContext db = new ModelContext();
-
+        private static int course_Id;
         // GET: Courses
         public ActionResult Index()
         {
@@ -80,7 +80,7 @@ namespace Course.Controllers
 
                 /*return RedirectToAction("Index");*/
             courses.userid = User.Identity.GetUserId();
-            courses.Course_date= DateTime.Now;
+            /*courses.= DateTime.Now;*/
             ViewBag.level_id = new SelectList(db.Levels, "level_id", "Name", courses.level_id);
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email", courses.userid);
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name", courses.category_id);
@@ -178,7 +178,9 @@ namespace Course.Controllers
             Courses courses = db.Courses.Find(course_id);
             PayLib pay = new PayLib();
 
-            int price = Int32.Parse(courses.price) * 100;
+            course_Id = courses.course_id;
+
+            int? price = Int32.Parse(courses.price)* 100;
         
             pay.AddRequestData("vnp_Version", "2.1.0"); //Phiên bản api mà merchant kết nối. Phiên bản hiện tại là 2.0.0
             pay.AddRequestData("vnp_Command", "pay"); //Mã API sử dụng, mã cho giao dịch thanh toán là 'pay'
@@ -201,13 +203,7 @@ namespace Course.Controllers
             //Billing
             pay.AddRequestData("vnp_Bill_Mobile", "@@");
             pay.AddRequestData("vnp_Bill_Email", "@@");
-            var fullName = User.Identity.Name;
-            if (!String.IsNullOrEmpty(fullName))
-            {
-                var indexof = fullName.IndexOf(' ');
-                pay.AddRequestData("vnp_Bill_FirstName", fullName.Substring(0, indexof));
-                pay.AddRequestData("vnp_Bill_LastName", fullName.Substring(indexof + 1, fullName.Length - indexof - 1));
-            }
+            
             // Invoice
             pay.AddRequestData("vnp_Inv_Phone", "0815632641");
             pay.AddRequestData("vnp_Inv_Email", User.Identity.Name);
@@ -243,7 +239,7 @@ namespace Course.Controllers
                 long vnpayTranId = Convert.ToInt64(pay.GetResponseData("vnp_TransactionNo")); //mã giao dịch tại hệ thống VNPAY
                 string vnp_ResponseCode = pay.GetResponseData("vnp_ResponseCode"); //response code: 00 - thành công, khác 00 - xem thêm https://sandbox.vnpayment.vn/apis/docs/bang-ma-loi/
                 string vnp_SecureHash = Request.QueryString["vnp_SecureHash"]; //hash của dữ liệu trả về
-                long vnp_Amount = Convert.ToInt64(pay.GetResponseData("vnp_Amount")) / 100;
+                int vnp_Amount = Convert.ToInt32(pay.GetResponseData("vnp_Amount")) / 100;
                 bool checkSignature = pay.ValidateSignature(vnp_SecureHash, hashSecret); //check chữ ký đúng hay không?
 
                 if (checkSignature)
@@ -251,7 +247,16 @@ namespace Course.Controllers
                     if (vnp_ResponseCode == "00")
                     {
                         //Thanh toán thành công
-                        Enrollment payment = new Enrollment() { };
+                        Payment payment = new Payment()
+                        {
+                            Order_Id = orderId,
+                            payment_date = DateTime.Now,
+                            price = vnp_Amount,
+                            users_id = User.Identity.GetUserId(),
+                            course_id = course_Id
+                        };
+                        db.Payments.Add(payment);
+                        db.SaveChanges();
 
                         ViewBag.Message = "Thanh toán thành công hóa đơn " + orderId + " | Mã giao dịch: " + vnpayTranId;
                     }
