@@ -41,9 +41,10 @@ namespace Course.Controllers
         // GET: Courses/Create
         public ActionResult Create()
         {
+            ViewBag.level_id = new SelectList(db.Levels, "level_id", "Name");
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name");
-            return View(new Courses());
+            return View();
         }
 
         // POST: Courses/Create
@@ -51,7 +52,7 @@ namespace Course.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "title,description,price,duration")] Courses courses, HttpPostedFileBase ImageUpload)
+        public ActionResult Create([Bind(Include = "course_id,title,description,price,duration,userid,category_id,level_id,courses_date")] Courses courses, HttpPostedFileBase ImageUpload)
         {
 
             
@@ -76,6 +77,8 @@ namespace Course.Controllers
 
                 /*return RedirectToAction("Index");*/
             courses.userid = User.Identity.GetUserId();
+            courses.Course_date= DateTime.Now;
+            ViewBag.level_id = new SelectList(db.Levels, "level_id", "Name", courses.level_id);
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email", courses.userid);
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name", courses.category_id);
             db.Courses.Add(courses);
@@ -95,7 +98,7 @@ namespace Course.Controllers
             {
                 return HttpNotFound();
             }
-
+            ViewBag.level_id = new SelectList(db.Levels, "level_id", "Name", courses.level_id);
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email", courses.userid);
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name", courses.category_id);
             return View(courses);
@@ -106,7 +109,7 @@ namespace Course.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "course_id,title,description,price,duration,userid,category_id")] Courses courses, HttpPostedFileBase ImageUpload)
+        public ActionResult Edit([Bind(Include = "course_id,title,description,price,duration,userid,category_id,level_id")] Courses courses, HttpPostedFileBase ImageUpload)
         {
             if (ModelState.IsValid)
             {
@@ -124,6 +127,7 @@ namespace Course.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.level_id = new SelectList(db.Levels, "level_id", "Name", courses.level_id);
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email", courses.userid);
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name", courses.category_id);
             return View(courses);

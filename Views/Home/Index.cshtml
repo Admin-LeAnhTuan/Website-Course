@@ -4,6 +4,45 @@
     ViewBag.Title = "Home Page";
 }
 
+<div class="categories">
+    <ul class="categories__list d-flex flex-column gap-3 align-items-center">
+        <li class="categories__item">
+            <div class="categories__item--add">
+                <a href="/Courses/Create"><i class="fa-solid fa-plus"></i></a>
+            </div>
+        </li>
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--active gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-house"></i>
+                <h6 class="text-default">Home</h6>
+            </a>
+        </li>
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-road"></i>
+                <h6 class="text-default">Lộ trình</h6>
+            </a>
+
+        </li>
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-lightbulb"></i>
+                <h6 class="text-default">Học</h6>
+            </a>
+
+        </li>
+
+        <li class="categories__item">
+            <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+                <i class="fa-solid fa-newspaper"></i>
+                <h6 class="text-default">Blog</h6>
+            </a>
+
+        </li>
+    </ul>
+</div>
+
+
 <div class="home__container">
     <div class="hero swiper">
         <div class="swiper-wrapper hero__container">
@@ -84,24 +123,26 @@
     </div>
 
 
-<div class="content">
-    <h2 class="text-default fz-24 fw-900">Khóa học miễn phí</h2>
-    <div class="d-flex gap-3 flex-wrap mt-3">
-        @foreach (var item in Model)
-        {
+    <div class="content">
+        <h2 class="text-default fz-24 fw-900">Khóa học miễn phí</h2>
+        <div class="d-flex gap-3 flex-wrap mt-3">
+            @foreach (var item in Model)
+            {
 
-            <div class="course"
-                 style=" background-image: url(@Url.Content(item.img_course));">
-                <div class="course__overlay">
-                    <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem khóa học</a>
-                    <a href="" class="px-3 py-2 bg-white text-default border--lg">Mua khóa học </a>
+                <div class="course"
+                     style=" background-image: url(@Url.Content(item.img_course));">
+                    <div class="course__overlay">
+                        <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem khóa học</a>
+                        <a href="" class="px-3 py-2 bg-white text-default border--lg">Mua khóa học </a>
+                        @Html.ActionLink("Edit", "Details", "Units", new { id = 1 }, new { @class = "px-3 py-2 bg-white text-default border--lg" })
+                    </div>
                 </div>
-            </div>
 
-        }
+            }
+        </div>
+
     </div>
 </div>
-    </div>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
 <script>

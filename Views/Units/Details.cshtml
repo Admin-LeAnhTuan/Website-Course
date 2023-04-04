@@ -1,67 +1,51 @@
 ﻿@model Course.Models.Unit
 
+
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="unit__container d-flex" style="width: 100vw">
+    <div class="unit__main pb-5" style="flex: 3">
+        <iframe style="width: 100%"
+                height="680"
+                src="https://www.youtube.com/embed/@Html.DisplayFor(model => model.url_unit)">
+        </iframe>
 
-<div>
-    <h4>Unit</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Course.title)
-        </dt>
+        <div class="mt-5 d-flex flex-column m-auto" style="width: 80%">
+            <h1 class="fz-28 fw-500">Phương pháp học lập trình của Admin F8?</h1>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course.title)
-        </dd>
+            <div class="mt-3 fz-12">Cập nhật tháng 11 năm 2022</div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lesson)
-        </dt>
+            <p class="fz-16">
+                Tham gia các cộng đồng để cùng học hỏi, chia sẻ và "thám thính" xem
+                F8 sắp có gì mới nhé!
+            </p>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.lesson)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.title)
-        </dt>
+    <div class="unit__comment d-flex flex-column" style="flex: 1">
+            <h3 class="fz-16 text-white p-3" style="border: solid 1px #808080">
+                Nội dung khóa học
+            </h3>
 
-        <dd>
-            @Html.DisplayFor(model => model.title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
-
-        <dt>
-
-            @Html.DisplayNameFor(model => model.url_unit)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.url_unit)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.duration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.duration)
-        </dd>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Unit_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <ul class="d-flex flex-column justify-content-between">
+                @foreach (var item in Model.lstUnit)
+                {
+                    <li class="d-flex flex-column py-3 px-4 border-left-top-right gap-1">
+                        <a href="">
+                            <h6 class="fz-14 text-white">
+                               @item.lesson
+                            </h6>
+                            <span class="fz-12 text-white">
+                                <i class="fa-solid fa-circle-play"></i> @item.duration
+                            </span>
+                        </a>
+                    </li>
+                }
+                </ul>
+       </div>
+    </div>
+ 
