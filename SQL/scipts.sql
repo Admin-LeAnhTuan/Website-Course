@@ -21,6 +21,12 @@ CREATE TABLE Category
 )
 GO
 
+CREATE TABLE Levels
+(
+	level_id int identity(1,1) primary key,
+	Name nvarchar(255),
+)
+
 CREATE TABLE Course
 (
 	course_id int identity(1,1) primary key,
@@ -30,9 +36,12 @@ CREATE TABLE Course
 	duration nvarchar(255),
 	userid nvarchar(128),
 	img_course nvarchar(255),
-	category_id int
+	category_id int,
+	level_id int,
+	Course_date datetime,
 	foreign key (userid) references AspNetUsers(Id),
 	foreign key (category_id) references Category(category_id),
+	foreign key(level_id) references Levels(level_id)
 )
 Go
 
@@ -40,8 +49,10 @@ CREATE TABLE Unit
 (
 	Unit_id int identity(1,1) primary key,
 	lesson nvarchar(255),
+	description nvarchar(255),
 	course_id int,
 	url_unit nvarchar(255),
+	duration nvarchar(255),
 	foreign key(course_id) references Course(course_id)
 )
 Go
@@ -55,28 +66,19 @@ CREATE TABLE Test
 )
 Go
 
-CREATE TABLE Enrollment
+CREATE TABLE Payment
 (
-	enrollment_id int identity(1,1) primary key, 
-	 course_id int,
-	 users_id nvarchar(128),
-	 enrollment_date datetime,
-	 statuss int
-	foreign key (users_id) references AspNetUsers(Id)
-
+	Id int identity(1,1) primary key,
+	Order_Id bigint,
+	payment_date datetime,
+	price nvarchar(255),
+	users_id nvarchar(128),
+	course_id int,
+	foreign key (users_id) references AspNetUsers(id),
+	foreign key (course_id) references Course(course_id)
 )
-GO
 
-CREATE TABLE CoursePayment
-(
-	Payment_id int identity(1,1) primary key,
-	enrollment_id int,
-	Payment_date datetime,
-	amount float
-	foreign key (enrollment_id) references Enrollment(enrollment_id)
 
-)
-GO
 
 CREATE TABLE Review
 (

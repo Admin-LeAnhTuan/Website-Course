@@ -4,108 +4,91 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <div class="course__container d-flex mt-5 gap-5">
+        <div class="d-flex flex-column gap-3" style="flex: 2">
+            <h4 class="fz-32 fw-700">@Html.DisplayFor(model => model.title)</h4>
 
-<div class="course__container d-flex mt-5 gap-5">
-    <div class="d-flex flex-column gap-3" style="flex: 2">
-        <h4 class="fz-32 fw-700">@Html.DisplayFor(model => model.title)</h4>
+            <p class="fz-14">
+                @Html.DisplayFor(model => model.description)
+            </p>
 
-        <p class="fz-14">
-            @Html.DisplayFor(model => model.description)
-        </p>
+            <h5 class="fz-20 fw-700">Nội dung khóa học</h5>
 
-        <h5 class="fz-20 fw-700">Nội dung khóa học</h5>
+            <h6 class="fz-14">Bài học - Thời lương @Html.DisplayFor(model => model.duration)</h6>
+            @foreach (var item in Model.Units)
+            {
+                <ul class="d-flex gap-3 flex-column">
 
-        <h6 class="fz-14">100 Bài học - Thời lương @Html.DisplayFor(model => model.duration)</h6>
+                    <li class="d-flex justify-content-between pb-2"
+                        style="border-bottom: 1px rgba(0, 0, 0, 0.1) solid">
+                        <div class="d-flex gap-1 align-items-center">
+                            <div class="course__icon" style="transform: translateY(-10%)">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                            <h6 class="fz-14">@item.lesson</h6>
+                        </div>
+                        <div class="d-flex gap-3 align-items-center">
+                            <a href="/Units/Details/@item.Unit_id" class="btn btn-primary">Xem</a>
+                            <a href="/Units/Edit/@item.Unit_id" class="btn btn-primary">Chỉnh Sửa</a>
+                            <h6 class="fz-14 text-light-dark">01:03</h6>
+                        </div>
+                    </li>
+                </ul>
+            }
+        </div>
 
-        <ul class="d-flex gap-3 flex-column">
-            <li class="d-flex justify-content-between pb-2"
-                style="border-bottom: 1px rgba(0, 0, 0, 0.1) solid">
-                <div class="d-flex gap-1 align-items-center">
-                    <div class="course__icon" style="transform: translateY(-10%)">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
-                    <h6 class="fz-14">1. Giới thiệu khóa học</h6>
+        <div class="d-flex flex-column px-4" style="flex: 1">
+            <div class="course__demo d-flex justify-content-between align-items-center position-relative">
+                <img src="@Url.Content(Model.img_course)"
+                     alt=""
+                     class="w-100 bg--img"
+                     style="height: 300px; border-radius: 20px" />
+
+                <div class="course__demo--icon" style="z-index: 1">
+                    <i class="fa-solid fa-play"></i>
                 </div>
 
-                <h6 class="fz-14 text-light-dark">01:03</h6>
-            </li>
-
-            <li class="d-flex justify-content-between pb-2"
-                style="border-bottom: 1px rgba(0, 0, 0, 0.1) solid">
-                <div class="d-flex gap-1 align-items-center">
-                    <div class="course__icon" style="transform: translateY(-10%)">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
-                    <h6 class="fz-14">1. Giới thiệu khóa học</h6>
-                </div>
-
-                <h6 class="fz-14 text-light-dark">01:03</h6>
-            </li>
-
-            <li class="d-flex justify-content-between pb-2"
-                style="border-bottom: 1px rgba(0, 0, 0, 0.1) solid">
-                <div class="d-flex gap-1 align-items-center">
-                    <div class="course__icon" style="transform: translateY(-10%)">
-                        <i class="fa-solid fa-play"></i>
-                    </div>
-                    <h6 class="fz-14">1. Giới thiệu khóa học</h6>
-                </div>
-
-                <h6 class="fz-14 text-light-dark">01:03</h6>
-            </li>
-        </ul>
-    </div>
-
-    <div class="d-flex flex-column px-4" style="flex: 1">
-        <div class="course__demo d-flex justify-content-between align-items-center position-relative">
-            <img src="https://files.fullstack.edu.vn/f8-prod/courses/21/63e1bcbaed1dd.png"
-                 alt=""
-                 class="w-100 bg--img"
-                 style="height: 300px; border-radius: 20px" />
-
-            <div class="course__demo--icon" style="z-index: 1">
-                <i class="fa-solid fa-play"></i>
+                <h6 class="fz-16 text-white">Xem giới thiệu khóa học</h6>
             </div>
 
-            <h6 class="fz-16 text-white">Xem giới thiệu khóa học</h6>
-        </div>
-
-        <div class="mt-4 d-flex flex-column gap-3 align-items-center">
-            <h2 class="fz-32 text-primary fw-400">Giá @Model.priceAfterConvert() VND</h2>
+            <div class="mt-4 d-flex flex-column gap-3 align-items-center">
+                <h2 class="fz-32 text-primary fw-400">Giá@* @Model.priceAfterConvert()*@ VND</h2>
 
                 <a href="/Courses/CreatePayment" class="btn btn--primary">Mua khóa học </a>
-            
-        </div>
 
-        <div class="d-flex justify-content-center">
-            <ul class="d-flex flex-column gap-3 mt-4" style="width: max-content">
-                <li class="d-flex px-4 align-items-center">
-                    <i class="fa-solid fa-gauge"></i>
+            </div>
 
-                    <h6 class="px-4 fz-14 text-light-dark">Trình độ cơ bản</h6>
-                </li>
+            <div class="d-flex justify-content-center">
+                <ul class="d-flex flex-column gap-3 mt-4" style="width: max-content">
+                    <li class="d-flex px-4 align-items-center">
+                        <i class="fa-solid fa-gauge"></i>
 
-                <li class="d-flex px-4 align-items-center">
-                    <i class="fa-solid fa-list"></i>
-                    <h6 class="px-4 fz-14 text-light-dark">
-                        Tổng số <strong>100</strong> bài học
-                    </h6>
-                </li>
+                        <h6 class="px-4 fz-14 text-light-dark">@Html.DisplayFor(model => model.title)</h6>
+                    </li>
 
-                <li class="d-flex px-4 align-items-center">
-                    <i class="fa-solid fa-clock"></i>
+                    <li class="d-flex px-4 align-items-center">
+                        <i class="fa-solid fa-list"></i>
+                        <h6 class="px-4 fz-14 text-light-dark">
+                            Tổng số <strong>100</strong> bài học
+                        </h6>
+                    </li>
 
-                    <h6 class="px-4 fz-14 text-light-dark">
-                        Thời lượng <strong>10 giờ 19 phút</strong>
-                    </h6>
-                </li>
+                    <li class="d-flex px-4 align-items-center">
+                        <i class="fa-solid fa-clock"></i>
 
-                <li class="d-flex px-4 align-items-center">
-                    <i class="fa-solid fa-battery-full"></i>
+                        <h6 class="px-4 fz-14 text-light-dark">
+                            Thời lượng <strong>@Html.DisplayFor(model => model.duration)</strong>
+                        </h6>
+                    </li>
 
-                    <h6 class="px-4 fz-14 text-light-dark">Học mọi lúc, mọi nơi</h6>
-                </li>
-            </ul>
+                    <li class="d-flex px-4 align-items-center">
+                        <i class="fa-solid fa-battery-full"></i>
+
+                        <h6 class="px-4 fz-14 text-light-dark">Học mọi lúc, mọi nơi</h6>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

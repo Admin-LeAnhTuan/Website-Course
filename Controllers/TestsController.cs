@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -10,113 +11,113 @@ using Course.Models;
 
 namespace Course.Controllers
 {
-    public class EnrollmentsController : Controller
+    public class TestsController : Controller
     {
         private ModelContext db = new ModelContext();
 
-        // GET: Enrollments
-        public ActionResult Index()
+        // GET: Tests
+        public async Task<ActionResult> Index()
         {
-            var enrollments = db.Enrollments.Include(e => e.AspNetUser);
-            return View(enrollments.ToList());
+            var tests = db.Tests.Include(t => t.Unit);
+            return View(await tests.ToListAsync());
         }
 
-        // GET: Enrollments/Details/5
-        public ActionResult Details(int? id)
+        // GET: Tests/Details/5
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Enrollment enrollment = db.Enrollments.Find(id);
-            if (enrollment == null)
+            Test test = await db.Tests.FindAsync(id);
+            if (test == null)
             {
                 return HttpNotFound();
             }
-            return View(enrollment);
+            return View(test);
         }
 
-        // GET: Enrollments/Create
+        // GET: Tests/Create
         public ActionResult Create()
         {
-            ViewBag.users_id = new SelectList(db.AspNetUsers, "Id", "Email");
+            ViewBag.Test_unit_id = new SelectList(db.Units, "Unit_id", "lesson");
             return View();
         }
 
-        // POST: Enrollments/Create
+        // POST: Tests/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "enrollment_id,course_id,users_id,enrollment_date,statuss")] Enrollment enrollment)
+        public async Task<ActionResult> Create([Bind(Include = "Test_id,Test_unit_id,Test_case")] Test test)
         {
             if (ModelState.IsValid)
             {
-                db.Enrollments.Add(enrollment);
-                db.SaveChanges();
+                db.Tests.Add(test);
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.users_id = new SelectList(db.AspNetUsers, "Id", "Email", enrollment.users_id);
-            return View(enrollment);
+            ViewBag.Test_unit_id = new SelectList(db.Units, "Unit_id", "lesson", test.Test_unit_id);
+            return View(test);
         }
 
-        // GET: Enrollments/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Tests/Edit/5
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Enrollment enrollment = db.Enrollments.Find(id);
-            if (enrollment == null)
+            Test test = await db.Tests.FindAsync(id);
+            if (test == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.users_id = new SelectList(db.AspNetUsers, "Id", "Email", enrollment.users_id);
-            return View(enrollment);
+            ViewBag.Test_unit_id = new SelectList(db.Units, "Unit_id", "lesson", test.Test_unit_id);
+            return View(test);
         }
 
-        // POST: Enrollments/Edit/5
+        // POST: Tests/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "enrollment_id,course_id,users_id,enrollment_date,statuss")] Enrollment enrollment)
+        public async Task<ActionResult> Edit([Bind(Include = "Test_id,Test_unit_id,Test_case")] Test test)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(enrollment).State = EntityState.Modified;
-                db.SaveChanges();
+                db.Entry(test).State = EntityState.Modified;
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.users_id = new SelectList(db.AspNetUsers, "Id", "Email", enrollment.users_id);
-            return View(enrollment);
+            ViewBag.Test_unit_id = new SelectList(db.Units, "Unit_id", "lesson", test.Test_unit_id);
+            return View(test);
         }
 
-        // GET: Enrollments/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Tests/Delete/5
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Enrollment enrollment = db.Enrollments.Find(id);
-            if (enrollment == null)
+            Test test = await db.Tests.FindAsync(id);
+            if (test == null)
             {
                 return HttpNotFound();
             }
-            return View(enrollment);
+            return View(test);
         }
 
-        // POST: Enrollments/Delete/5
+        // POST: Tests/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Enrollment enrollment = db.Enrollments.Find(id);
-            db.Enrollments.Remove(enrollment);
-            db.SaveChanges();
+            Test test = await db.Tests.FindAsync(id);
+            db.Tests.Remove(test);
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
