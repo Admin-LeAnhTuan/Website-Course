@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Course.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Course.Controllers
 {
@@ -322,6 +323,8 @@ namespace Course.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

@@ -31,7 +31,7 @@
                         <div class="d-flex gap-3 align-items-center">
                             <a href="/Units/Details/@item.Unit_id" class="btn btn-primary">Xem</a>
                             <a href="/Units/Edit/@item.Unit_id" class="btn btn-primary">Chỉnh Sửa</a>
-                            <h6 class="fz-14 text-light-dark">01:03</h6>
+                            <h6 class="fz-14 text-light-dark">@item.duration</h6>
                         </div>
                     </li>
                 </ul>
@@ -53,9 +53,19 @@
             </div>
 
             <div class="mt-4 d-flex flex-column gap-3 align-items-center">
-                <h2 class="fz-32 text-primary fw-400">Giá@* @Model.priceAfterConvert()*@ VND</h2>
+                @if (Model.isBuyed)
+                {
+                    <h2 class="fz-32 text-primary fw-400">@Model.title</h2>
 
-                <a href="/Courses/CreatePayment" class="btn btn--primary">Mua khóa học </a>
+                    <a href="/Units/Details/@Model.firstUnit_id" class="btn btn--primary">Học</a>
+                }
+                else
+                {
+                    <h2 class="fz-32 text-primary fw-400">Giá @Model.priceAfterConvert() VND</h2>
+
+                    @Html.ActionLink("Mua khóa học", "Payment", new { course_id = Model.course_id }, new { @class = "btn btn--primary" })
+                }
+
 
             </div>
 

@@ -59,16 +59,19 @@ namespace Course.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Unit> Units { get; set; }
 
-        //public string priceAfterConvert()
-        //{
-        //    string originalString = this.price;
-        //    int length = originalString.Length;
 
-        //    for (int i = length - 3; i > 0; i -= 3)
-        //    {
-        //        originalString = originalString.Insert(i, ",");
-        //    }
-        //    return originalString;
-        //}
+        public bool isBuyed = false;
+        public int firstUnit_id = 1;
+        public string priceAfterConvert()
+        {
+            string originalString = this.price;
+            int length = originalString.Length;
+
+            for (int i = length - 3; i > 0; i -= 3)
+            {
+                originalString = originalString.Insert(i, ",");
+            }
+            return originalString;
+        }
     }
 }

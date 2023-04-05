@@ -1,3 +1,5 @@
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -65,5 +67,7 @@ namespace Course.Models
                 .WithOptional(e => e.Unit)
                 .HasForeignKey(e => e.Test_unit_id);
         }
+
+    
     }
 }

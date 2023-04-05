@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using Course.Models;
 using DemoVNPay.Others;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using WebGrease;
 
 namespace Course.Controllers
@@ -19,16 +20,56 @@ namespace Course.Controllers
     {
         private ModelContext db = new ModelContext();
         private static int course_Id;
+        ManageController mng = new ManageController();
+
+        public Boolean isAdminUser()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == "Admin")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public Boolean isWriter(Courses course)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string user_id = User.Identity.GetUserId();
+                ModelContext db = new ModelContext();
+                var isWriter = db.Courses.Where(c => user_id == course.userid).FirstOrDefault();
+                return (isWriter != null) ? true : false;
+            }
+            return false;
+        }
         // GET: Courses
         public ActionResult Index()
         {
-            var courses = db.Courses.Include(c => c.AspNetUser).Include(c => c.Category);
-            return View(courses.ToList());
+            var isAdmin = isAdminUser();
+            if (!isAdmin)
+            {
+                return RedirectToAction("Index", "Home", new { });
+            }
+            var user_id = User.Identity.GetUserId();
+            var courses = db.Courses.Where(c => c.userid == user_id).ToList();
+            return View(courses);
         }
 
         // GET: Courses/Details/5
         public ActionResult Details(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,16 +79,48 @@ namespace Course.Controllers
             {
                 return HttpNotFound();
             }
+
+            var user_id = User.Identity.GetUserId();
+            var payments = db.Payments.Where(p => p.users_id == user_id).ToList();
+            int course_id = courses.course_id;
+            var unit = db.Units.FirstOrDefault(u => u.course_id == course_id);
+            if (unit != null)
+            {
+                courses.firstUnit_id = unit.Unit_id;
+            }
+            foreach (var p in payments)
+            {
+                if (p.course_id == courses.course_id)
+                {
+                    courses.isBuyed = true;
+                    break;
+                }
+                else
+                {
+                    courses.isBuyed = false;
+                }
+            }
+                    
             return View(courses);
         }
 
+    
+        
+
+       
         // GET: Courses/Create
         public ActionResult Create()
         {
+
+            var isAdmin = isAdminUser();
+            if(!isAdmin)
+            {
+                return RedirectToAction("Index", "Home", new { });
+            }
             ViewBag.level_id = new SelectList(db.Levels, "level_id", "Name");
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.category_id = new SelectList(db.Categories, "category_id", "Name");
-            return View();
+            return View(new Courses());
         }
 
         // POST: Courses/Create
@@ -58,8 +131,9 @@ namespace Course.Controllers
         public ActionResult Create([Bind(Include = "course_id,title,description,price,duration,userid,category_id,level_id,courses_date")] Courses courses, HttpPostedFileBase ImageUpload)
         {
 
-            
 
+            var isAdmin = isAdminUser();
+         
             if (ModelState.IsValid)
             {
                 if (ImageUpload != null && ImageUpload.ContentLength > 0)
@@ -78,7 +152,13 @@ namespace Course.Controllers
                 return RedirectToAction("Index");
             }
 
-                /*return RedirectToAction("Index");*/
+
+            if (!isAdmin || isWriter(courses))
+            {
+                return RedirectToAction("Index", "Home", new { });
+            }
+
+            /*return RedirectToAction("Index");*/
             courses.userid = User.Identity.GetUserId();
             /*courses.= DateTime.Now;*/
             ViewBag.level_id = new SelectList(db.Levels, "level_id", "Name", courses.level_id);
@@ -92,6 +172,9 @@ namespace Course.Controllers
         // GET: Courses/Edit/5
         public ActionResult Edit(int? id)
         {
+
+            var isAdmin = isAdminUser();
+          
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -100,6 +183,11 @@ namespace Course.Controllers
             if (courses == null)
             {
                 return HttpNotFound();
+            }
+
+            if (!isAdmin || !isWriter(courses))
+            {
+                return RedirectToAction("Index", "Home", new { });
             }
             ViewBag.level_id = new SelectList(db.Levels, "level_id", "Name", courses.level_id);
             ViewBag.userid = new SelectList(db.AspNetUsers, "Id", "Email", courses.userid);
@@ -114,6 +202,12 @@ namespace Course.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "course_id,title,description,price,duration,userid,category_id,level_id")] Courses courses, HttpPostedFileBase ImageUpload)
         {
+
+            var isAdmin = isAdminUser();
+            if (!isAdmin || isWriter(courses))
+            {
+                return RedirectToAction("Index", "Home", new { });
+            }
             if (ModelState.IsValid)
             {
                 if (ImageUpload != null && ImageUpload.ContentLength > 0)
@@ -139,11 +233,18 @@ namespace Course.Controllers
         // GET: Courses/Delete/5
         public ActionResult Delete(int? id)
         {
+
+            var isAdmin = isAdminUser();
+         
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Courses courses = db.Courses.Find(id);
+            if (!isAdmin || isWriter(courses))
+            {
+                return RedirectToAction("Index", "Home", new { });
+            }
             if (courses == null)
             {
                 return HttpNotFound();
@@ -156,6 +257,12 @@ namespace Course.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
+            var isAdmin = isAdminUser();
+            if (!isAdmin)
+            {
+                return RedirectToAction("Index", "Home", new { });
+            }
             Courses courses = db.Courses.Find(id);
             db.Courses.Remove(courses);
             db.SaveChanges();

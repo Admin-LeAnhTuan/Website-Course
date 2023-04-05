@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Course.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity.Migrations;
 
 namespace Course.Controllers
 {
@@ -14,11 +17,64 @@ namespace Course.Controllers
     {
         private ModelContext db = new ModelContext();
         private List<Unit> units = new List<Unit>();
-        // GET: Units
-        public ActionResult Index()
+        public Boolean isAdminUser()
         {
-            var units = db.Units.Include(u => u.Course);
-            return View(units.ToList());
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == "Admin")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public Boolean isBuyed(int? course_id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user_id = User.Identity.GetUserId();
+                ModelContext db = new ModelContext();
+                var isBuyed = db.Payments.FirstOrDefault(p => p.users_id== user_id);
+                if(isBuyed != null )
+                {
+                    return true;
+                }
+                return false;
+                
+            }
+            return false;
+        }
+
+        public Boolean isWriter(int unit_id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ModelContext db = new ModelContext();
+                var unit= db.Units.Where(u => unit_id == u.Unit_id).FirstOrDefault();
+                var course = db.Courses.Where(c => c.course_id == unit.course_id).FirstOrDefault();
+                var isWriter = course.userid == User.Identity.GetUserId();
+                if(isWriter)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }
+            // GET: Units
+            public ActionResult Index()
+        {
+            return RedirectToAction("Index", "Home", new { });
+
         }
 
         // GET: Units/Details/5
@@ -30,9 +86,10 @@ namespace Course.Controllers
             }
             Unit unit = db.Units.Where(u => u.Unit_id == id).FirstOrDefault();
            unit.lstUnit= db.Units.Where(u => u.course_id == unit.course_id).ToList();
-            // unit.lstUnit là những cái unit của khóa học 
-            // bỏ nguyên cái list zo trong function để chuyển sang thời gian
-            // unit.duration xử lý để cho thời gian tăng lên
+            if(!isBuyed(unit.course_id))
+            {
+                return RedirectToAction("Index", "Home", new { });
+            }
             if (unit == null)
             {
                 return HttpNotFound();
@@ -44,7 +101,7 @@ namespace Course.Controllers
         public ActionResult Create()
         {
             ViewBag.course_id = new SelectList(db.Courses, "course_id", "title");
-            return View();
+            return View(new Unit());
         }
 
         // POST: Units/Create
@@ -57,9 +114,22 @@ namespace Course.Controllers
         {
             if (ModelState.IsValid)
             {
+                Courses courses = db.Courses.FirstOrDefault(c => c.course_id == unit.course_id);
+                if (courses.duration == null)
+                {
+                    courses.duration = unit.duration;
+                }
+                else
+                {
+                    TimeSpan dur_unit = TimeSpan.Parse(unit.duration);
+                    TimeSpan dur_course = TimeSpan.Parse(courses.duration);
+                    TimeSpan result = dur_course.Add(dur_unit);
+                    courses.duration = result.ToString();
+                }
+                db.Courses.AddOrUpdate(courses);
                 db.Units.Add(unit);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Courses");
             }
 
             ViewBag.course_id = new SelectList(db.Courses, "course_id", "title", unit.course_id);
