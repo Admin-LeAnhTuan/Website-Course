@@ -34,18 +34,35 @@
             <ul class="d-flex flex-column justify-content-between">
                 @foreach (var item in Model.lstUnit)
                 {
-                    <li class="d-flex flex-column py-3 px-4 border-left-top-right gap-1">
-                        <a href="">
-                            <h6 class="fz-14 text-white">
-                               @item.lesson
-                            </h6>
-                            <span class="fz-12 text-white">
-                                <i class="fa-solid fa-circle-play"></i> @item.duration
-                            </span>
-                        </a>
-                    </li>
+                    if (Model.Unit_id == @item.Unit_id)
+                    {
+                        <li style="background-color: #fff" class="d-flex flex-column  py-3 px-4 border-left-top-right gap-1">
+                            <a href="/Units/Details/@item.Unit_id">
+                                <h6 class="fz-14 text-default">
+                                    @item.lesson
+                                </h6>
+                                <span class="fz-12 text-default">
+                                    <i class="fa-solid fa-circle-play"></i> @item.duration
+                                </span>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="d-flex flex-column py-3 px-4 border-left-top-right gap-1">
+                            <a href="/Units/Details/@item.Unit_id">
+                                <h6 class="fz-14 text-white">
+                                    @item.lesson
+                                </h6>
+                                <span class="fz-12 text-white">
+                                    <i class="fa-solid fa-circle-play"></i> @item.duration
+                                </span>
+                            </a>
+                        </li>
+                    }
+
                 }
-                </ul>
+            </ul>
        </div>
     </div>
  

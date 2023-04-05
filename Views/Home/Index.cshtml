@@ -18,9 +18,9 @@
             </a>
         </li>
         <li class="categories__item">
-            <a href="#" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
+            <a href="/Courses" style="" class="categories__item--link gap-2 border-m d-flex flex-column justify-content-center align-items-center">
                 <i class="fa-solid fa-road"></i>
-                <h6 class="text-default">Lộ trình</h6>
+                <h6 class="text-default">Quản lý </h6>
             </a>
 
         </li>
@@ -124,7 +124,7 @@
 
 
     <div class="content">
-        <h2 class="text-default fz-24 fw-900">Khóa học miễn phí</h2>
+        <h2 class="text-default fz-24 fw-900">Tất cả khóa học</h2>
         <div class="d-flex gap-3 flex-wrap mt-3">
             @foreach (var item in Model)
             {
@@ -133,8 +133,14 @@
                      style=" background-image: url(@Url.Content(item.img_course));">
                     <div class="course__overlay">
                         <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem khóa học</a>
-
-                        <a href="@Url.Action("Payment", "Courses", new { course_id = item.course_id })" class="px-3 py-2 bg-white text-default border--lg">Thanh toán</a>
+                        @if (!item.isBuyed)
+                        {
+                            <a href="@Url.Action("Payment", "Courses", new { course_id = item.course_id })" class="px-3 py-2 bg-white text-default border--lg">Thanh toán</a>
+                        }
+                        @if (item.isBuyed)
+                        {
+                            <a href="/Units/Details/@item.firstUnit_id" class="px-3 py-2 bg-white text-default border--lg">Học</a>
+                        }
 
                     </div>
                 </div>
@@ -142,9 +148,38 @@
             }
 
         </div>
-            
-</div>
     </div>
+
+    @foreach (var category in ViewBag.categories)
+    {
+        <div class="content">
+            <h2 class="text-default fz-24 fw-900">Tất cả @category.Name</h2>
+            <div class="d-flex gap-3 flex-wrap mt-3">
+                @foreach (var item in category.lstCourse)
+                {
+
+                    <div class="course"
+                         style=" background-image: url(@Url.Content(item.img_course));">
+                        <div class="course__overlay">
+                            <a href="/Courses/Details/@item.course_id" class="px-3 py-2 bg-white text-default border--lg">Xem khóa học</a>
+                            @if (!item.isBuyed)
+                            {
+                                <a href="@Url.Action("Payment", "Courses", new { course_id = item.course_id })" class="px-3 py-2 bg-white text-default border--lg">Thanh toán</a>
+                            }
+                            @if (item.isBuyed)
+                            {
+                                <a href="/Units/Details/@item.firstUnit_id" class="px-3 py-2 bg-white text-default border--lg">Học</a>
+                            }
+
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    }
+</div>
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
 <script>
