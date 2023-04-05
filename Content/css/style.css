@@ -453,7 +453,7 @@ ul {
 
 .login {
     height: 100vh;
-    background-image: url("https://accounts.fullstack.edu.vn/static/media/f8_bg_auth_1920.b517075e98f3051de678.png");
+    background-image: url("https://png.pngtree.com/background/20210711/original/pngtree-english---vacation-training-background-picture-image_1087370.jpg");
     display: flex;
     align-items: center;
     justify-content: center;
@@ -461,6 +461,9 @@ ul {
     left: 0;
     top: 0;
     z-index: 1031;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .login__popup {
